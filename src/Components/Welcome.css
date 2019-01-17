@@ -26,6 +26,14 @@
     max-width: 100%;
 }
 
+.welcome_image .image2 {
+    display: none;
+}
+
+/*.welcome_image .image1:hover {*/
+    /*display: none;*/
+/*}*/
+
 .welcome_text {
     display: flex;
     /* align-items: center; */
@@ -41,54 +49,57 @@
     /*position: relative;*/
 }
 
-.about_boovie h1 {
-    font-size: 100px;
-    font-family: 'Amaranth', sans-serif;
-    color: white;
-    letter-spacing: 10px;
-    margin-bottom: 20px;
+/*.about_boovie h1 {*/
+/*font-size: 100px;*/
+/*font-family: 'Amaranth', sans-serif;*/
+/*color: white;*/
+/*letter-spacing: 10px;*/
+/*margin-bottom: 20px;*/
+/*}*/
+
+.about_boovie img {
+    width: 600px;
+    height: 100px;
 }
 
 /*.about_boovie .line_first::before {*/
-    /*content: "";*/
-    /*width: 2px;*/
-    /*height: 34%;*/
-    /*background: #081d44;*/
-    /*display: block;*/
-    /*position: absolute;*/
-    /*bottom: 252px;*/
-    /*left: -30px;*/
-    /*-webkit-transform: translateX(-50%);*/
-    /*transform: translateX(-50%);*/
+/*content: "";*/
+/*width: 2px;*/
+/*height: 34%;*/
+/*background: #081d44;*/
+/*display: block;*/
+/*position: absolute;*/
+/*bottom: 252px;*/
+/*left: -30px;*/
+/*-webkit-transform: translateX(-50%);*/
+/*transform: translateX(-50%);*/
 /*}*/
 
 /*.about_boovie h1::before {*/
-    /*content: "";*/
-    /*width: 10px;*/
-    /*height: 40%;*/
-    /*background: #081d44;*/
-    /*display: block;*/
-    /*position: absolute;*/
-    /*bottom: 230px;*/
-    /*left: -9px;*/
-    /*-webkit-transform: translateX(-50%);*/
-    /*transform: translateX(-50%);*/
+/*content: "";*/
+/*width: 10px;*/
+/*height: 40%;*/
+/*background: #081d44;*/
+/*display: block;*/
+/*position: absolute;*/
+/*bottom: 230px;*/
+/*left: -9px;*/
+/*-webkit-transform: translateX(-50%);*/
+/*transform: translateX(-50%);*/
 /*}*/
 
 /*.about_boovie h1::after {*/
-    /*content: "";*/
-    /*width: 70%;*/
-    /*height: 4px;*/
-    /*background: #081d44;*/
-    /*display: block;*/
-    /*position: absolute;*/
-    /*bottom: 230px;*/
-    /*left: 197px;*/
-    /*-webkit-transform: translateX(-50%);*/
-    /*transform: translateX(-50%);*/
+/*content: "";*/
+/*width: 70%;*/
+/*height: 4px;*/
+/*background: #081d44;*/
+/*display: block;*/
+/*position: absolute;*/
+/*bottom: 230px;*/
+/*left: 197px;*/
+/*-webkit-transform: translateX(-50%);*/
+/*transform: translateX(-50%);*/
 /*}*/
-
-
 
 .about_boovie p {
     color: white;
@@ -115,7 +126,7 @@
     justify-content: space-between;
 }
 
-.btn{
+.btn {
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
@@ -123,7 +134,7 @@
 
 }
 
-.btn .btn_login{
+.btn .btn_login {
     font-weight: 700;
     background-color: #081d44;
     font-size: 18px;
@@ -138,7 +149,7 @@
     padding: 10px;
 }
 
-.btn .btn_signup{
+.btn .btn_signup {
     font-weight: 700;
     background-color: #081d44;
     font-size: 18px;
@@ -152,23 +163,21 @@
     padding: 10px;
 }
 
-.btn .buttons:hover{
+.btn .buttons:hover {
     width: 100px;
     background-color: grey;
     color: #081d44;
 }
 
 /*Link a{*/
-    /*text-decoration: none;*/
-    /*color: white;*/
+/*text-decoration: none;*/
+/*color: white;*/
 /*}*/
 
 /*.buttons {*/
 /*margin: 20px;*/
 /*display: inline-block;*/
 /*}*/
-
-
 
 /*.login {*/
 /*font-weight: 700;*/
