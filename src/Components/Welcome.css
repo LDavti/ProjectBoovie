@@ -31,7 +31,7 @@
 }
 
 /*.welcome_image .image1:hover {*/
-    /*display: none;*/
+/*display: none;*/
 /*}*/
 
 .welcome_text {
@@ -46,7 +46,11 @@
 
 .about_boovie {
     margin-bottom: 20px;
-    /*position: relative;*/
+}
+
+.about_boovie img {
+    width: 600px;
+    height: 100px;
 }
 
 /*.about_boovie h1 {*/
@@ -56,11 +60,6 @@
 /*letter-spacing: 10px;*/
 /*margin-bottom: 20px;*/
 /*}*/
-
-.about_boovie img {
-    width: 600px;
-    height: 100px;
-}
 
 /*.about_boovie .line_first::before {*/
 /*content: "";*/
@@ -164,109 +163,84 @@
 }
 
 .btn .buttons:hover {
-    width: 100px;
-    background-color: grey;
-    color: #081d44;
+    /*width: 80px;*/
+    /*height: 80px;*/
+    background-color: #3300cc;
+
 }
 
-/*Link a{*/
-/*text-decoration: none;*/
-/*color: white;*/
-/*}*/
+/*WHY Boovie Section*/
 
-/*.buttons {*/
-/*margin: 20px;*/
-/*display: inline-block;*/
-/*}*/
+.why_boovie {
+    display: flex;
+    flex-direction: column;
+}
 
-/*.login {*/
-/*font-weight: 700;*/
-/*background-color: #081d44;*/
-/*font-size: 18px;*/
-/*color: white;*/
-/*border-radius: 7px;*/
-/*border: 1px solid transparent;*/
-/*outline: none;*/
-/*text-decoration: none;*/
-/*cursor: pointer;*/
-/*transition: all .4s ease-out;*/
-/*}*/
+.why_header h1 {
+    font-size: 70px;
+    font-family: 'Amaranth', sans-serif;
+    color: white;
+    text-align: center;
+}
 
-/*.signup {*/
-/*font-weight: 700;*/
-/*background-color: #081d44;*/
-/*font-size: 18px;*/
-/*color: white;*/
-/*border-radius: 7px;*/
-/*border: 1px solid transparent;*/
-/*outline: none;*/
-/*text-decoration: none;*/
-/*cursor: pointer;*/
-/*transition: all .4s ease-out;*/
-/*}*/
+/*Start of want Boovie section*/
 
-/*footer {*/
-/*box-sizing: border-box;*/
-/*background: #081d44;*/
-/*color: white;*/
-/*width: 100%;*/
-/*padding: 2em 1em 1em 0.5em;*/
-/*position: relative;*/
-/*display: flex;*/
-/*flex-wrap: wrap;*/
-/*justify-content: space-between;*/
-/*}*/
+.want_to {
+    display: flex;
+}
 
-/*.footer-center {*/
-/*position: relative;*/
-/*top: 50%;*/
-/*transform: translateY(-50%);*/
-/*}*/
+.want_to_desc {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
-/*a {*/
-/*color: #660000;*/
-/*font-size: 80px;*/
-/*}*/
+.want_to_img {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/*.media {*/
-/*height: 100px;*/
-/*width: 400px;*/
-/*}*/
+.want_to_desc h2 {
+    /*color: white;*/
+    color: #081d44;
+    font-family: 'Actor', sans-serif;
+    font-size: 35px;
+    text-align: left;
+}
 
-/*.about {*/
-/*font-size: 70px;*/
-/*font-family: 'Amaranth', sans-serif;*/
-/*color: white;*/
-/*text-align: center;*/
+.want_to_desc p {
+    color: white;
+    font-family: 'Actor', sans-serif;
+    font-size: 25px;
+    text-align: left;
+}
 
-/*}*/
+.want_to_img .image3 {
+    width: 500px;
+    height: 400px;
+}
 
-/*.bec, .f, .h {*/
-/*font-size: 50px;*/
-/*font-family: 'Amaranth', sans-serif;*/
-/*color: #081d44;*/
-/*text-align: right;*/
+/*END OF WANT TO SECTION*/
 
-/*}*/
+.footer {
+    box-sizing: border-box;
+    background: #081d44;
+    color: white;
+    width: 100%;
+    padding: 2em 1em 1em 0.5em;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
-/*.df {*/
-/*display: inline-flex;*/
-/*flex-direction: row-reverse;*/
-/*}*/
+.footer-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
-/*.plain, .k, .l {*/
-/*color: white;*/
-/*font-family: 'Actor', sans-serif;*/
-/*font-size: 25px;*/
-/*text-align: right;*/
-/*!*text-transform: .5s;*!*/
-
-/*}*/
-
-/*.img2, .j {*/
-/*height: 200px;*/
-/*width: 200px;*/
-/*float: left;*/
-/*border-radius: 50%;*/
-/*border: 1px solid #081d44;*/
-/*}*/
+/*END OF Footer  SECTION*/

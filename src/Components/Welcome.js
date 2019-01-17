@@ -40,7 +40,6 @@ class Welcome extends Component {
                                 Hurry up to join us
                             </p>
                         </div>
-
                         <div className="btn ">
                             <Link to="/signin">
                                 <button className="btn_login buttons">
@@ -60,48 +59,72 @@ class Welcome extends Component {
                     <div className="why_header">
                         <h1>Why Boovie?</h1>
                     </div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div className="want_to">
+                        <div className="want_to_desc">
+                            <h2>
+                                Want to find a movie to watch or book to read ?
+                                Boovie is here to help you!
+                            </h2>
+                            <p className="plain">
+                                Your timeline shows what movies or books your
+                                friends prefer.You can discuss any of them and
+                                let them know about your thoughts. Also it will
+                                be good to start read or watch something
+                                new together.
+                            </p>
+                        </div>
+                        <div className="want_to_img">
+                            <img
+                                className="image3"
+                                src={welthird}
+                                alt="thirdimg"/>
+                        </div>
+                    </div>
+                    <div className="want_to">
+                        <div className="want_to_img">
+                            <img
+                                className="image3"
+                                src={welfour}
+                                alt="fourthimg"/>
+                        </div>
+                        <div className="want_to_desc">
+                            <h2>
+                                Not sure if a movie or a book is good ?
+                            </h2>
+                            <p className="plain">
+                                For every movie and book,you can see reviews from people,
+                                also you can compare them to rotten tomatoes or stars
+                                to see what the rest of the world thinks.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="want_to">
+                        <div className="want_to_desc">
+                            <h2>
+                                Want to connect with movie-lovers or
+                                bookoholics ? Boovie is that place!
+                            </h2>
+                            <p className="plain">
+                                Find your friends on Boovie or follow the users
+                                you like.You can see each user's lists
+                                and send them direct messages. Go on!
+                            </p>
+                        </div>
+                        <div className="want_to_img">
+                            <img
+                                className="image3"
+                                src={welthird}
+                                alt="thirdimg"/>
+                        </div>
+                    </div>
                 </div>
-                {/*<div id="whyboovie_section">*/}
-                    {/*<div className="about">Why Boovie?</div>*/}
-                    {/*<p className="bec"> Want to find a movie to watch or book to read ? Boovie is here to help you!*/}
-                    {/*</p>*/}
-                    {/*<p className="df">*/}
-                        {/*<p className="plain"> Your timeline shows what movies or books your frends prefer.You can*/}
-                            {/*discuss any*/}
-                            {/*of them and*/}
-                            {/*let them know about your thoughts. Also it will be good to start read or watch something new*/}
-                            {/*together.*/}
-                        {/*</p>*/}
-                        {/*<img*/}
-                            {/*className="img2"*/}
-                            {/*src={welthird}*/}
-                            {/*alt="thirdimg"/>*/}
-                    {/*</p>*/}
-                    {/*<p className="f"> Not sure if a movie or a book is good ?</p>*/}
-                    {/*<p className="k"> For every movie and book,you can see reviews from people, also you can compare*/}
-                        {/*them to*/}
-                        {/*rotten*/}
-                        {/*tomatoes or stars to see what the rest of the world thinks*/}
-                    {/*</p>*/}
-                    {/*<p className="h"> Want to connect with movie-lovers or bookoholics ? Boovie is that place!</p>*/}
-                    {/*<p className="l"> Find your friends on Boovie or follow the users you like.You can see each user's*/}
-                        {/*lists*/}
-                        {/*and send them*/}
-                        {/*direct messages. Go on!*/}
-                    {/*</p>*/}
-                    {/*<img className="j"*/}
-                         {/*src={welfour}*/}
-                         {/*alt="thirdimg"/>*/}
-                {/*</div>*/}
-                <footer>
-                    <p className="footer-center"> {"\u00A9"} 2019 Made with
-                        <span className="heart-icon"><IoMdHeart/></span> by
-                        Boovie
-                        team </p>
-                </footer>
+                <div className="footer">
+                    <p className="footer-center">
+                        {"\u00A9"} 2019 Made with
+                        <span className="heart-icon"><IoMdHeart/></span>
+                        by Boovie team
+                    </p>
+                </div>
             </div>
         );
     }
