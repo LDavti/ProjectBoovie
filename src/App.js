@@ -1,28 +1,25 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import {Switch, Route} from "react-router-dom";
+import Welcome from "./Components/Welcome";
+import SignIn from "./Components/SignIn";
+import SignUp from "./Components/SignUp";
 import './App.css';
 
+
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <Switch>
+                    <Route path="/" exact component={Welcome}/>
+                    <Route path="/signin" component={SignIn}/>
+                    <Route path="/signup" component={SignUp}/>
+                    {/*<Route path="/feed" component={SignUp}/>*/}
+
+                </Switch>
+            </div>
+        );
+    }
 }
 
 export default App;
