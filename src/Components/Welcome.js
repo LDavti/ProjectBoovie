@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import './Welcome.css';
 import {Link, NavLink} from "react-router-dom";
-// import { FaBeer,} from 'react-icons/fa';
 import {IoMdHeart} from "react-icons/io";
-import boovie_logo from "../welcomeimages/boovie_logo.png";
 import welfirst from "../welcomeimages/welfirst.png";
 import welsecond from "../welcomeimages/welsecond.png";
 import welthird from "../welcomeimages/welthird.png";
 import welfour from "../welcomeimages/welfour.png";
-
-// import p from "../welcomeimages/p.png";
+import boovie_logo_new from "../welcomeimages/boovie_logo_new.png";
+import books from "../welcomeimages/books.png"
 
 class Welcome extends Component {
     render() {
@@ -25,7 +23,9 @@ class Welcome extends Component {
                     <div className="welcome_text">
                         <div className="about_boovie">
                             <div className="line_first">
-                                <img className="logo" src={boovie_logo}
+                                {/*<img className="logo" src={boovie_logo}*/}
+                                     {/*alt="boovie_img"/>*/}
+                                <img className="logo" src={boovie_logo_new}
                                      alt="boovie_img"/>
                             </div>
                             <p>
@@ -113,7 +113,7 @@ class Welcome extends Component {
                         <div className="want_to_img">
                             <img
                                 className="image3"
-                                src={welthird}
+                                src={books}
                                 alt="thirdimg"/>
                         </div>
                     </div>
