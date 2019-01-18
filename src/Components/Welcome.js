@@ -46,7 +46,7 @@ class Welcome extends Component {
                                     Sign In
                                 </button>
                             </Link>
-                            <Link to="signup">
+                            <Link to="/signup">
                                 <button className="btn_signup buttons">
                                     Sign Up
                                 </button>
