@@ -65,9 +65,9 @@
 
 /*Form Section*/
 
-.form_all {
+/*.form_all {*/
 
-}
+/*}*/
 
 .form_field {
     margin-bottom:  10px;
@@ -134,9 +134,12 @@
     color: white;
     border: none;
     outline: none;
-    border-radius: 25px;
-    padding: 15px 70px;
-    font-size: 0.9em;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 130px;
+    height: 50px;
 }
 
 .checkbox_label {
