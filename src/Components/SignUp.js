@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import './SignUp.css';
 import signupimg from "../signupimages/signupimg.png";
 
@@ -60,7 +60,7 @@ class SignUp extends Component {
                                 </div>
                                 <div className="form_field">
                                     <label className="form_field_label" htmlFor="Username">Username</label>
-                                    <input type="text" name="username" className="form_field_input"
+                                    <input type="text" name="username" className="form_field_input" id="Username"
                                            placeholder="Enter your username"
                                            value={this.state.username}
                                            onChange={this.handleChange}/>
@@ -104,7 +104,7 @@ class SignUp extends Component {
                                     <input className="checkbox_field" id="policy_terms" type="checkbox" name="hasAgreed"/>
                                     <label className="checkbox_label" htmlFor="policy_terms">
                                          I agree all statements in
-                                        <Link to="" className="form_field_termslink">terms of service</Link>
+                                        <Link to="/" className="form_field_termslink">terms of service</Link>
                                     </label>
                                 </div>
                                 <div className="form_field_submit">
@@ -113,8 +113,6 @@ class SignUp extends Component {
                             </form>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         );

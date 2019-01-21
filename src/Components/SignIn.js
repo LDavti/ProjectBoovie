@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import './SignIn.css';
 import signin from "../signinimages/signin.png"
 
@@ -8,20 +8,16 @@ class SignIn extends Component {
     constructor() {
         super();
         this.state = {
-            username: "",
+            // username: "",
             email: "",
             password: "",
         };
     }
 
     handleChange = (e) => {
-        const target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
-
-        this.setState({
-            [name]: value
-        });
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({[name]: value});
     };
 
     handleSubmit = (e) => {
@@ -53,11 +49,11 @@ class SignIn extends Component {
                                     <label className="signin_form_field_label" htmlFor="Username">
                                         Username or e-mail
                                     </label>
-                                    <input type="text" name="username"
+                                    <input type="text" name="email"
                                            className="signin_form_field_input"
-                                           placeholder="Enter your username or e-mail"
-                                           value={this.state.username}
-                                           onChange={this.handleChange}/>
+                                           placeholder="Enter your e-mail"
+                                           value={this.state.email}
+                                           onChange={(e)=>this.handleChange(e)}/>
                                 </div>
                                 <div className="signin_form_field">
                                     <label className="signin_form_field_label" htmlFor="Password">
@@ -66,11 +62,11 @@ class SignIn extends Component {
                                     <input type="password" className="signin_form_field_input"
                                            placeholder="Enter your password" name="password"
                                            value={this.state.password}
-                                           onChange={this.handleChange}/>
+                                           onChange={(e)=>this.handleChange(e)}/>
                                 </div>
                                 <div className="signin_form_field_submit">
                                     <Link to="/myprofile" className="go_to_myprofile">
-                                        <button className="signin_formfield_button">Sign In</button>
+                                        <button type="submit" className="signin_formfield_button">Sign In</button>
                                     </Link>
                                 </div>
                             </form>
