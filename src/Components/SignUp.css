@@ -65,9 +65,7 @@
 
 /*Form Section*/
 
-/*.form_all {*/
 
-/*}*/
 
 .form_field {
     margin-bottom:  10px;
@@ -109,15 +107,19 @@
     color: white;
     font-size: 0.9em;
     padding-bottom: 10px;
-
 }
 .radio_gender{
     display: block;
     text-transform: uppercase;
     font-size: 1.1em;
     color: #ccccff;
+    margin-bottom: 20px;
 }
-
+.malefemaleText
+{
+    margin-left: 15px;
+    font-size: 17px;
+}
 .form_field_checkbox{
     display: flex;
     justify-content: center;
@@ -130,16 +132,26 @@
     width: 85%;
 }
 .formfield_button {
+    margin-top: 20px;
     background-color: #6699ff;
     color: white;
     border: none;
     outline: none;
-    border-radius: 10px;
-    font-size: 20px;
-    font-weight: bold;
+    border-radius: 25px;
+    padding: 15px 70px;
+    font-size: 1.4em;
+    transition-duration: 0.4s;
     cursor: pointer;
-    width: 130px;
-    height: 50px;
+  
+   
+}
+
+
+.formfield_button:hover
+{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    font-size: 20px;
+  color:  #081d44;
 }
 
 .checkbox_label {
