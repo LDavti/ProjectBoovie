@@ -65,10 +65,8 @@
 
 /*Form Section*/
 
-
-
 .form_field {
-    margin-bottom:  10px;
+    margin-bottom: 10px;
 }
 
 .form_field input :valid {
@@ -76,7 +74,7 @@
     background-color: #081d44;
 }
 
-.form_field_label{
+.form_field_label {
     display: block;
     text-transform: uppercase;
     font-size: 1.1em;
@@ -98,7 +96,8 @@
 .form_field_input::placeholder {
     color: #aaa;
 }
-.form_for_radio{
+
+.form_for_radio {
     display: flex;
     justify-content: space-around;
     width: 85%;
@@ -108,29 +107,33 @@
     font-size: 0.9em;
     padding-bottom: 10px;
 }
-.radio_gender{
+
+.radio_gender {
     display: block;
     text-transform: uppercase;
     font-size: 1.1em;
     color: #ccccff;
     margin-bottom: 20px;
 }
-.malefemaleText
-{
+
+.malefemaleText {
     margin-left: 15px;
     font-size: 17px;
 }
-.form_field_checkbox{
+
+.form_field_checkbox {
     display: flex;
     justify-content: center;
     width: 85%;
     margin-bottom: 10px;
 }
-.form_field_submit{
+
+.form_field_submit {
     display: flex;
     justify-content: center;
     width: 85%;
 }
+
 .formfield_button {
     margin-top: 20px;
     background-color: #6699ff;
@@ -142,16 +145,13 @@
     font-size: 1.4em;
     transition-duration: 0.4s;
     cursor: pointer;
-  
-   
+
 }
 
-
-.formfield_button:hover
-{
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+.formfield_button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     font-size: 20px;
-  color:  #081d44;
+    color: #081d44;
 }
 
 .checkbox_label {

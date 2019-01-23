@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import './SignUp.css';
-import signupimg from "../signupimages/signupimg.png";
+// import signupimg from "../signupimages/signupimg.png";
+import registration from "../signupimages/registration.png";
 
 class SignUp extends Component {
     constructor() {
@@ -12,8 +13,8 @@ class SignUp extends Component {
             confirm: "",
             name: "",
             username: "",
-            hasAgreed : false
-          
+            hasAgreed: false
+
         };
 
     }
@@ -22,14 +23,13 @@ class SignUp extends Component {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-    console.log(value)
+        console.log(value);
         this.setState({
-          [name]: value
+            [name]: value
         });
         console.log(value)
-      }
-        
-    
+    };
+
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -39,7 +39,7 @@ class SignUp extends Component {
         return (
             <div className="all_signup">
                 <div className="first_img">
-                    <img src={signupimg} alt="signupimg"/>
+                    <img src={registration} alt="signupimg"/>
                 </div>
                 <div className="signup_form">
                     <div className="signup_all">
@@ -94,29 +94,34 @@ class SignUp extends Component {
                                 </div>
                                 <div className="form_field">
                                     <div className="form_for_radio">
-                                       <span className="radio_gender">Gender</span>
-                                        <div >
-                                            <input type="radio" id="male" name="human" 
-                                             style = {{width : "15px", height : "15px"}}/>
-                                            <label htmlFor="male" className = "malefemaleText">Male</label>
+                                        <span className="radio_gender">Gender</span>
+                                        <div>
+                                            <input type="radio" id="male" name="human"
+                                                   style={{width: "15px", height: "15px"}}/>
+                                            <label htmlFor="male" className="malefemaleText">Male</label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="female" name="human" 
-                                            style = {{width : "15px", height : "15px"}}/>
-                                            <label htmlFor="female" className = "malefemaleText">Female</label>
+                                            <input type="radio" id="female" name="human"
+                                                   style={{width: "15px", height: "15px"}}/>
+                                            <label htmlFor="female" className="malefemaleText">Female</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="form_field_checkbox">
-                                    <input className="checkbox_field" id="policy_terms" type = 'checkbox' name="hasAgreed" checked={this.state.hasAgreed} onChange={this.handleChange} />
+                                    <input className="checkbox_field" id="policy_terms" type='checkbox' name="hasAgreed"
+                                           checked={this.state.hasAgreed} onChange={this.handleChange}/>
                                     <label className="checkbox_label" htmlFor="policy_terms">
-                                         I agree all statements in
+                                        I agree all statements in
                                         <Link to="" className="form_field_termslink">terms of service</Link>
                                     </label>
                                 </div>
                                 <div className="form_field_submit">
-                                    <button className="formfield_button mr-20" name = "button" disabled = {!this.state.hasAgreed}
-                                     >Sign Up</button>
+                                    <Link to="/myprofile">
+                                        <button className="formfield_button mr-20" name="button"
+                                                // disabled={!this.state.hasAgreed}
+                                        >Sign Up
+                                        </button>
+                                    </Link>
                                 </div>
                             </form>
                         </div>

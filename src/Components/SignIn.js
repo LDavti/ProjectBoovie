@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import './SignIn.css';
-import signin from "../signinimages/signin.png"
+// import signin from "../signinimages/signin.png"
+import sigin from "../signinimages/sigin.png";
+import fire from "../config/Fire";
 
 
 class SignIn extends Component {
@@ -11,24 +13,63 @@ class SignIn extends Component {
             // username: "",
             email: "",
             password: "",
+            // formErrors: {email: '', password: ''},
+            // emailValid: false,
+            // passwordValid: false,
+            // formValid: false
         };
     }
 
-    handleChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
+    login = e => {
+        e.preventDefault();
+        fire
+            .auth()
+            .signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then(u => {
+                this.props.history.push("/feed");
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    signup = e => {
+        e.preventDefault();
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then((u) => {
+                console.log(u)
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    handleChange = e => {
+        const {name, value} = e.target;
         this.setState({[name]: value});
     };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-    };
+    // handleChange = (e) => {
+    //     const name = e.target.name;
+    //     const value = e.target.value;
+    //     this.setState({[name]: value});
+    // };
+
+    // handleUserInput = (e) => {
+    //     const name = e.target.name;
+    //     const value = e.target.value;
+    //     this.setState({[name]: value});
+    // };
+
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    // };
 
     render() {
         return (
             <div className="all_signin">
                 <div className="first_img">
-                    <img src={signin} alt="signinimgpng"/>
+                    <img src={sigin} alt="signinimgpng"/>
                 </div>
                 <div className="signin_form">
                     <div className="signin_all">
@@ -43,31 +84,56 @@ class SignIn extends Component {
                                 </Link>
                             </div>
                         </div>
-                        <div className="form_all_signin">
-                            <form className="signin_form_fields" onSumbit={this.handleSubmit}>
+                        <div className="form_all_signin" onClick={e => e.stopPropagation()}>
+                            {/*<form className="signin_form_fields" onSumbit={this.handleSubmit}>*/}
+                            <form className="signin_form_fields">
                                 <div className="signin_form_field">
-                                    <label className="signin_form_field_label" htmlFor="Username">
-                                        Username or e-mail
+                                    <label className="signin_form_field_label"
+                                           htmlFor="email">
+                                        E-mail
                                     </label>
-                                    <input type="text" name="email"
+                                    <input type="email"
+                                           name="email"
+                                           id="email"
                                            className="signin_form_field_input"
                                            placeholder="Enter your e-mail"
                                            value={this.state.email}
-                                           onChange={(e)=>this.handleChange(e)}/>
+                                           onChange={this.handleChange}
+                                        // onChange={(e)=>this.handleChange(e)}/>
+                                        //    onChange={(event) => this.handleUserInput(event)}
+                                    />
                                 </div>
                                 <div className="signin_form_field">
-                                    <label className="signin_form_field_label" htmlFor="Password">
+                                    <label className="signin_form_field_label"
+                                           htmlFor="password">
                                         Password
                                     </label>
-                                    <input type="password" className="signin_form_field_input"
-                                           placeholder="Enter your password" name="password"
+                                    <input type="password"
+                                           className="signin_form_field_input"
+                                           placeholder="Enter your password"
+                                           name="password"
+                                           id="password"
                                            value={this.state.password}
-                                           onChange={(e)=>this.handleChange(e)}/>
+                                           onChange={this.handleChange}
+                                        // onChange={(e)=>this.handleChange(e)}/>
+                                        //    onChange={(event) => this.handleUserInput(event)}
+                                    />
                                 </div>
                                 <div className="signin_form_field_submit">
-                                    <Link to="/myprofile" className="go_to_myprofile">
-                                        <button type="submit" className="signin_formfield_button">Sign In</button>
-                                    </Link>
+                                    {/*<Link to="/myprofile" className="go_to_myprofile"></Link>*/}
+                                    <button
+                                        type="submit"
+                                        className="signin_formfield_button"
+                                        // value="SignIn"
+                                        onClick={this.login}>
+                                        Sign In
+                                    </button>
+                                    <button
+                                        className="signin_formfield_button"
+                                        style={{marginLeft:20,backgroundColor:"green"}}
+                                        onClick={this.signup}>
+                                        Sign Up
+                                    </button>
                                 </div>
                             </form>
                         </div>
