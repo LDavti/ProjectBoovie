@@ -108,6 +108,10 @@
     font-size: 0.9em;
     padding-bottom: 10px;
 }
+#male, #female
+{
+    cursor: pointer;
+}
 .radio_gender{
     display: block;
     text-transform: uppercase;
@@ -151,9 +155,17 @@
 {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     font-size: 20px;
-  color:  #081d44;
+    color:  #081d44;
+    
 }
-
+.formfield_button:disabled
+{
+    opacity: 0.5;
+    cursor: default;
+    box-shadow: none;
+    color: white;
+    font-size: 1.4em;
+}
 .checkbox_label {
     color: #6699ff;
     font-size: .9em;
@@ -162,6 +174,13 @@
 .checkbox_field {
     position: relative;
     top: 1.5px;
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+}
+.checkbox_field:disabled
+{
+    cursor: default;
 }
 
 .form_field_termslink {
@@ -171,4 +190,10 @@
     display: inline-block;
     padding-bottom: 2px;
     margin-left: 5px;
+}
+.Error_fields
+{
+    margin-bottom: 10px;
+    color : rgb(255,128,128);
+    
 }
