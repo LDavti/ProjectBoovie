@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import './SignUp.css';
 // import signupimg from "../signupimages/signupimg.png";
 import registration from "../signupimages/registration.png";
@@ -13,8 +13,8 @@ class SignUp extends Component {
             confirm: "",
             name: "",
             username: "",
-            hasAgreed: false
-
+            hasAgreed: false,
+            human: true,
         };
 
     }
@@ -23,11 +23,65 @@ class SignUp extends Component {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        console.log(value);
         this.setState({
             [name]: value
         });
-        console.log(value)
+    };
+
+    errorOfFullname = () => {
+        let {name} = this.state;
+        //let {validName} = this.validField
+        (name.length > 0 && name.length < 40) ? this.validField.validName = true : this.validField.validName = false;
+        if (name.length > 40) {
+            return <div className="Error_fields">Invalid name</div>
+        }
+    };
+    validField = {
+        validName: false,
+        validUsername: false,
+        validEmail: false,
+        validPassword: false,
+        validConfirm: false
+    };
+    errorOfUsername = () => {
+        let {username} = this.state;
+        let pattern = /^@[a-zA-Z0-9._]*$/;
+        if (username.slice(0, 1) !== "@") {
+            if (username === "") {
+                return <div/>;
+            }
+            return <div className="Error_fields">Username must starts with @</div>
+        }
+        username.match(pattern) ? this.validField.validUsername = true : this.validField.validUsername = false;
+        return <div
+            className="Error_fields">{(username.match(pattern)) ? " " : "Username may contains letters, numbers, dot , underscore "}</div>
+    };
+    errorOfEmail = () => {
+        // /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        let pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+        let {email} = this.state;
+        email.match(pattern) ? this.validField.validEmail = true : this.validField.validEmail = false;
+        return <div
+            className="Error_fields">{(email.match(pattern) || email === "") ? " " : "Invalid e-mail address"}</div>
+    };
+    errorOfPassword = () => {
+        let pattern = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*)(?=.*[a-z]).*$/;
+        let {password} = this.state;
+        password.match(pattern) ? this.validField.validPassword = true : this.validField.validPassword = false
+        return <div
+            className="Error_fields">{(password.match(pattern) || password === "") ? " " : "Password must be at least 8 characters minimum, letters and numbers / specialChar"}</div>
+    };
+    errorOfConfirm = () => {
+        let {confirm, password} = this.state;
+        password === confirm ? this.validField.validConfirm = true : this.validField.validConfirm = false;
+        return <div
+            className="Error_fields">{(password === confirm || confirm === "") ? " " : "Must be equal to password"}</div>
+    };
+    disabledCheckbox = () => {
+        let {validName, validUsername, validEmail, validPassword, validConfirm} = this.validField;
+        let { confirm } = this.state;
+        return (validName === true && validUsername === true && validEmail === true
+            && validPassword === true && validConfirm === true) ? false : true;
     };
 
 
@@ -57,47 +111,70 @@ class SignUp extends Component {
                         <div className="form_all">
                             <form className="form_fields" onSumbit={this.handleSubmit}>
                                 <div className="form_field">
-                                    <label className="form_field_label" htmlFor="fullname">Full Name</label>
-                                    <input type="text" className="form_field_input" name="name" id="fullname"
+                                    <label className="form_field_label"
+                                           htmlFor="fullname">
+                                        Full Name
+                                    </label>
+                                    <input type="text" className="form_field_input"
+                                           name="name" id="fullname"
                                            placeholder="Enter your full name"
                                            value={this.state.name}
                                            onChange={this.handleChange}/>
+                                    {this.errorOfFullname()}
                                 </div>
                                 <div className="form_field">
-                                    <label className="form_field_label" htmlFor="Username">Username</label>
-                                    <input type="text" name="username" className="form_field_input"
+                                    <label className="form_field_label"
+                                           htmlFor="username">
+                                        Username
+                                    </label>
+                                    <input type="text" name="username"
+                                           className="form_field_input" id="username"
                                            placeholder="Enter your username"
                                            value={this.state.username}
                                            onChange={this.handleChange}/>
+                                    {this.errorOfUsername()}
                                 </div>
                                 <div className="form_field">
-                                    <label className="form_field_label" htmlFor="E-mail address">E-mail Address</label>
-                                    <input type="email" name="email" className="form_field_input"
+                                    <label className="form_field_label"
+                                           htmlFor="email">
+                                        E-mail Address
+                                    </label>
+                                    <input type="email" name="email"
+                                           className="form_field_input" id="email"
                                            placeholder="Enter your e-mail address"
                                            value={this.state.email}
                                            onChange={this.handleChange}/>
+                                    {this.errorOfEmail()}
                                 </div>
                                 <div className="form_field">
-                                    <label className="form_field_label" htmlFor="Password">Password</label>
+                                    <label className="form_field_label" htmlFor="password">
+                                        Password
+                                    </label>
                                     <input type="password" className="form_field_input"
                                            placeholder="Enter your password" name="password"
+                                           id ="password"
                                            value={this.state.password}
                                            onChange={this.handleChange}/>
+                                    {this.errorOfPassword()}
                                 </div>
                                 <div className="form_field">
-                                    <label className="form_field_label" htmlFor=" Confirm Password"> Confirm
-                                        Password</label>
+                                    <label className="form_field_label" htmlFor="confirm password">
+                                        Confirm Password
+                                    </label>
                                     <input type="password" className="form_field_input"
-                                           placeholder="Confirm your password" name="confirm"
+                                           placeholder="Confirm password" name="confirm"
+                                           id = "confirm password"
                                            value={this.state.confirm}
                                            onChange={this.handleChange}/>
+                                    {this.errorOfConfirm()}
                                 </div>
                                 <div className="form_field">
                                     <div className="form_for_radio">
                                         <span className="radio_gender">Gender</span>
                                         <div>
                                             <input type="radio" id="male" name="human"
-                                                   style={{width: "15px", height: "15px"}}/>
+                                                   style={{width: "15px", height: "15px"}}
+                                                   checked = {this.state.human}/>
                                             <label htmlFor="male" className="malefemaleText">Male</label>
                                         </div>
                                         <div>
@@ -109,7 +186,9 @@ class SignUp extends Component {
                                 </div>
                                 <div className="form_field_checkbox">
                                     <input className="checkbox_field" id="policy_terms" type='checkbox' name="hasAgreed"
-                                           checked={this.state.hasAgreed} onChange={this.handleChange}/>
+                                           checked={this.state.hasAgreed}
+                                           disabled = {this.disabledCheckbox()}
+                                           onChange={this.handleChange}/>
                                     <label className="checkbox_label" htmlFor="policy_terms">
                                         I agree all statements in
                                         <Link to="" className="form_field_termslink">terms of service</Link>
@@ -117,8 +196,10 @@ class SignUp extends Component {
                                 </div>
                                 <div className="form_field_submit">
                                     <Link to="/myprofile">
-                                        <button className="formfield_button mr-20" name="button"
-                                                // disabled={!this.state.hasAgreed}
+                                        <button className="formfield_button mr-20"
+                                                name="button"
+                                                type = "submit"
+                                                disabled = {!this.state.hasAgreed}
                                         >Sign Up
                                         </button>
                                     </Link>
@@ -134,87 +215,3 @@ class SignUp extends Component {
 
 export default SignUp;
 
-// import React, {Component} from 'react';
-// //import {Link} from 'react-router-dom';
-// import logo from './logo.svg';
-// import './App.css';
-//
-// class SignUp extends Component {
-//     constructor() {
-//         super();
-//         this.state = {
-//             email: "",
-//             password: "",
-//             confirm:"",
-//             name: "",
-//             username:""
-//         };
-//
-//         // this.handleChange = this.handleChange.bind(this);
-//         // this.handleSubmit = this.handleSubmit.bind(this);
-//     }
-//     handleChange=(e)=> {
-//         let target = e.target;
-//         let value = target.type === 'checkbox' ? target.checked : target.value;
-//         let name = target.name;
-//
-//         this.setState({
-//             [name]: value
-//         });
-//     };
-//
-//     handleSubmit=(e)=> {
-//         e.preventDefault();
-//     };
-//
-//     render() {
-//         return (
-//             <div className="App">
-//                 <div className="Pictureside"></div>
-//                 <div className="Form">
-//                     <div className="FormTitle">
-//                         <a href="#" className="FormTitle__Link">Sign Up</a>
-//                         <div className="alter">
-//                             Already have an Account?<a href ="#" className="FormTitle__sec">Sign In</a>
-//                         </div>
-//                     </div>
-//                     <div className="FormCenter">
-//                         <form className="FormFields" onSumbit={this.handleSubmit}>
-//                             <div className="FormField">
-//                                 <label className="FormField__Label" htmlFor="name">Full Name</label>
-//                                 <input type="text" className="FormField__Input" name= "name" placeholder ="Enter your full name" value = {this.state.name} onChange={this.handleChange}/>
-//                             </div>
-//                             <div className="FormField">
-//                                 <label className="FormField__Label" htmlFor="Username" >Username</label>
-//                                 <input type="text" name="username" className="FormField__Input" placeholder ="Enter your username" value = {this.state.username} onChange={this.handleChange} />
-//                             </div>
-//                         </form>
-//
-//                         <div className="FormField">
-//                             <label className="FormField__Label" htmlFor="E-mail address">E-mail Address</label>
-//                             <input type="email" name="email" className="FormField__Input" placeholder ="Enter your e-mail address" value = {this.state.email} onChange={this.handleChange} />
-//                         </div>
-//                         <div className="FormField">
-//                             <label className="FormField__Label" htmlFor="Password">Password</label>
-//                             <input type="password"  className="FormField__Input" placeholder ="Enter your password" name ="password" value = {this.state.password} onChange={this.handleChange}/>
-//                         </div>
-//                         <div className="FormField">
-//                             <label className="FormField__Label" htmlFor=" Confirm Password"> Confirm Password</label>
-//                             <input type="password"  className="FormField__Input" placeholder ="Confirm your password"  name= "confirm" value = {this.state.confirm} onChange={this.handleChange}/>
-//                         </div>
-//                         <div className="FormField">
-//                             <label className="CheckboxLabel">
-//                                 <input className="Checkbox" type="checkbox" name="hasAgreed" /> I agree all statements in <a href="" className="FormField__TermsLink">terms of service</a>
-//                             </label>
-//                         </div>
-//                         <div className="FormField">
-//                             <button className="FormField__Button mr-20">Sign Up</button>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
-//
-// export default SignUp;
