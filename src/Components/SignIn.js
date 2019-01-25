@@ -33,16 +33,16 @@ class SignIn extends Component {
             });
     };
 
-    signup = e => {
-        e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then((u) => {
-                console.log(u)
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
+    // signup = e => {
+    //     e.preventDefault();
+    //     fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+    //         .then((u) => {
+    //             console.log(u)
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // };
 
     handleChange = e => {
         const {name, value} = e.target;
@@ -128,12 +128,12 @@ class SignIn extends Component {
                                         onClick={this.login}>
                                         Sign In
                                     </button>
-                                    <button
-                                        className="signin_formfield_button"
-                                        style={{marginLeft:20,backgroundColor:"green"}}
-                                        onClick={this.signup}>
-                                        Sign Up
-                                    </button>
+                                    {/*<button*/}
+                                        {/*className="signin_formfield_button"*/}
+                                        {/*style={{marginLeft:20,backgroundColor:"green"}}*/}
+                                        {/*onClick={this.signup}>*/}
+                                        {/*Sign Up*/}
+                                    {/*</button>*/}
                                 </div>
                             </form>
                         </div>
