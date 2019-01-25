@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import myprofilebackimg from "../myprofileimages/myprofilebackimg.png"
 import my_profile_boovie_logo from "../myprofileimages/my_profile_boovie_logo.png";
 import exampleimg from "../myprofileimages/exampleimg.png";
+import fire from "../config/Fire";
 
 const backgroundStyle = {
     width: "100%",
@@ -15,6 +16,11 @@ const backgroundStyle = {
 
 class MyProfile extends Component {
 
+    logout = () => {
+        fire.auth().signOut()
+    };
+
+
     render() {
         return (
             <div className="all_profile" style={backgroundStyle}>
@@ -22,22 +28,23 @@ class MyProfile extends Component {
                     <div className="header">
                         <div className="topnav">
                             <div className="topnav_logo">
-                                <a href="#" className="my_profile_logo">
-                                    <img src={my_profile_boovie_logo} alt="logoImg"/>
-                                </a>
+                                <img src={my_profile_boovie_logo} alt="logoImg"/>
                             </div>
                             <div className="topnav_input">
                                 <input type="text" placeholder="Search.."/>
                             </div>
                             <div className="navs">
                                 <div className="navs_feed">
-                                    <a href="#">Feed</a>
+                                    <Link to="/Feed">Feed</Link>
                                 </div>
                                 <div className="navs_notifications">
-                                    <a href="#"> Notifications</a>
+                                    {/*<a href="#"> Notifications</a>*/}
+                                    <p> Notifications</p>
                                 </div>
                                 <div className="navs_btn">
-                                    <button className="logout">Log Out</button>
+                                    <button className="logout" onClick={this.logout}>
+                                        Log Out
+                                    </button>
                                 </div>
                             </div>
                         </div>

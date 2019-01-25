@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-// import {Link, NavLink} from "react-router-dom";
-import fire from "../config/Fire";
+import Movie from '../Components/Movie';
 
 const url = "https://api.themoviedb.org/3/movie/";
 const img_url = "http://image.tmdb.org/t/p/";
 const api_key = "bb02a460de04ad1eb828328b58cab6bf";
 
-class Feed extends Component {
+class Movies extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,10 +14,6 @@ class Feed extends Component {
         };
 
     }
-
-    logout = () => {
-        fire.auth().signOut()
-    };
 
     componentDidMount() {
         this.getMovies();
@@ -42,23 +37,30 @@ class Feed extends Component {
 
     render() {
         return (
-            <div>
-                <h1>MY Feed</h1>
-                <button onClick={this.logout}>Logout</button>
-                <div style={{display: "flex"}}>
+            <div className="all_movies_page">
+                <div
+                    className="all_movies"
+                    style={{
+                        display: "flex",
+                        width: "100%",
+                        alignItems: "flex-start",
+                        flexWrap: "wrap"
+                    }}
+                >
                     {
                         this.state.movies.map(movie => (
-                            <div key={movie.id}>
-                                {movie.title}
-                                <img alt="poster..." src={`${img_url}w500${movie.poster_path}`}/>
-                            </div>
+                            <Movie
+                                key={movie.id}
+                                title={movie.title}
+                                images={movie.poster_path}
+                            />
                         ))
                     }
-                    <button name="next" onClick={this.pageChange}>next</button>
                 </div>
+                <button name="next" onClick={this.pageChange}>next</button>
             </div>
         );
     }
 }
 
-export default Feed;
+export default Movies;

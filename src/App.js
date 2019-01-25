@@ -62,17 +62,7 @@ class App extends Component {
                         </Switch>
                     )}
 
-
-                    {/*<Switch>*/}
-                    {/*<Route path="/" exact component={Welcome}/>*/}
-                    {/*<Route path="/signin" component={SignIn}/>*/}
-                    {/*<Route path="/signup" component={SignUp}/>*/}
-                    {/*<Route path="/myprofile" component={MyProfile}/>*/}
-                    {/*<Route path="/feed" component={Feed}/>*/}
-                    {/*/!*<Route path="/https://termsfeed.com/blog/privacy-policy-mandatory-law/" />*!/*/}
-                    {/*/!*<Route path="/feed" component={SignUp}/>*!/*/}
-                    {/*</Switch>*/}
-
+                    
                 </div>
             );
         }
