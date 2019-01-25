@@ -3,8 +3,12 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-.section_pagetabs{
+.all_movies_page{
     width:100%;
     display: flex;
+}
+
+.all_movies{
+    display: flex;
+    flex-direction: column;
 }

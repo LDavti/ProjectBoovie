@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import './SignUp.css';
-// import signupimg from "../signupimages/signupimg.png";
 import registration from "../signupimages/registration.png";
+import fire from "../config/Fire";
 
 class SignUp extends Component {
     constructor() {
@@ -18,6 +18,17 @@ class SignUp extends Component {
         };
 
     }
+
+    signup = e => {
+        e.preventDefault();
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then((u) => {
+                console.log(u)
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
     handleChange = (e) => {
         const target = e.target;
@@ -36,6 +47,7 @@ class SignUp extends Component {
             return <div className="Error_fields">Invalid name</div>
         }
     };
+
     validField = {
         validName: false,
         validUsername: false,
@@ -43,6 +55,7 @@ class SignUp extends Component {
         validPassword: false,
         validConfirm: false
     };
+
     errorOfUsername = () => {
         let {username} = this.state;
         let pattern = /^@[a-zA-Z0-9._]*$/;
@@ -85,9 +98,9 @@ class SignUp extends Component {
     };
 
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-    };
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    // };
 
     render() {
         return (
@@ -109,7 +122,8 @@ class SignUp extends Component {
                             </div>
                         </div>
                         <div className="form_all">
-                            <form className="form_fields" onSumbit={this.handleSubmit}>
+                            {/*<form className="form_fields" onSumbit={this.handleSubmit}>*/}
+                            <form className="form_fields" >
                                 <div className="form_field">
                                     <label className="form_field_label"
                                            htmlFor="fullname">
@@ -195,14 +209,13 @@ class SignUp extends Component {
                                     </label>
                                 </div>
                                 <div className="form_field_submit">
-                                    <Link to="/myprofile">
-                                        <button className="formfield_button mr-20"
-                                                name="button"
-                                                type = "submit"
-                                                disabled = {!this.state.hasAgreed}
-                                        >Sign Up
-                                        </button>
-                                    </Link>
+                                    <button className="formfield_button mr-20"
+                                            name="button"
+                                            type = "submit"
+                                            disabled = {!this.state.hasAgreed}
+                                            onClick={this.signup}
+                                    >Sign Up
+                                    </button>
                                 </div>
                             </form>
                         </div>
