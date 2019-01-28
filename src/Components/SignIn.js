@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import './SignIn.css';
-// import signin from "../signinimages/signin.png"
-import sigin from "../signinimages/sigin.png";
+import sign_in from "../signinimages/sign_in.png"
+//import sigup from "../signinimages/sigup.png";
 import fire from "../config/Fire";
 
 
@@ -69,7 +69,7 @@ class SignIn extends Component {
         return (
             <div className="all_signin">
                 <div className="first_img">
-                    <img src={sigin} alt="signinimgpng"/>
+                    <img src={sign_in} alt="signupimgpng"/>
                 </div>
                 <div className="signin_form">
                     <div className="signin_all">

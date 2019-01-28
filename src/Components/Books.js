@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 
-// const url = "https://www.goodreads.com/book/isbn/";
-// const img_url = "http://image.tmdb.org/t/p/";
-// const api_key = "bb02a460de04ad1eb828328b58cab6bf";
+ const url = "https://www.goodreads.com/book/isbn/";
+const api_key = "bb02a460de04ad1eb828328b58cab6bf";
 
 
 class Books extends Component {
@@ -38,9 +37,9 @@ class Books extends Component {
 
     render() {
         return (
-            <div className="all_movies_page">
+            <div className="all_books_page">
                 <div
-                    className="all_movies"
+                    className="all_books"
                     style={{
                         display: "flex",
                         width: "100%",
