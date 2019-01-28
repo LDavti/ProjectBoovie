@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 
 class Movie extends Component {
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         return (
             <div className="all_movie_style" style={{display: "flex"}}>
                 <div
                     title={this.props.title}
                     className="movie_style"
                     id="movie_style"
-                    style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}
+                    style={{display: "flex", justifyContent: "center",
+                        alignItems: "center", flexDirection: "column"}}
                 >
                     <img
                         src={`http://image.tmdb.org/t/p/w500/${this.props.images}`}
