@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
+import Book from "./book";
 
-// const url = "https://www.goodreads.com/book/isbn/";
-// const img_url = "http://image.tmdb.org/t/p/";
-// const api_key = "bb02a460de04ad1eb828328b58cab6bf";
+const url = "https://www.googleapis.com/books/v1";
+// const api_key = 'LvgVAflYuaRxQhQuyk6lg';
 
 
 class Books extends Component {
@@ -20,12 +20,12 @@ class Books extends Component {
     }
 
     getBooks = () => {
-        fetch(`"https://www.goodreads.com/book/isbn/" + isbn + "?key=" + key`, {
+        fetch(`${url}/volumes?q=""&startIndex=${(this.state.page - 1) * 20}&maxResults=20`, {
             method: "get",
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "no-cors"
         }).then(res => res.json()).then(json => {
             console.log(json);
-            // this.setState({books: json.results});
+            this.setState({books: json.items});
         });
     };
 
@@ -38,9 +38,9 @@ class Books extends Component {
 
     render() {
         return (
-            <div className="all_movies_page">
+            <div className="all_books_page">
                 <div
-                    className="all_movies"
+                    className="all_books"
                     style={{
                         display: "flex",
                         width: "100%",
@@ -50,7 +50,12 @@ class Books extends Component {
                 >
                     {
                         this.state.books.map(book => (
-                            <div></div>
+                            <Book
+                                key={book.id}
+                                id={book.id}
+                                title={book.volumeInfo.title}
+                                images={book}
+                            />
                         ))
                     }
                 </div>
@@ -61,3 +66,7 @@ class Books extends Component {
 }
 
 export default Books;
+
+
+
+

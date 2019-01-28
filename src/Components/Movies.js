@@ -56,6 +56,7 @@ class Movies extends Component {
                             />
                         ))
                     }
+
                 </div>
                 <button name="next" onClick={this.pageChange}>next</button>
             </div>
