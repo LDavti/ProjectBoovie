@@ -5,6 +5,9 @@
 }
 
 .section_pagetabs{
-    width:100%;
+    width:80%;
+    display: flex;
+}
+.all_feed{
     display: flex;
 }

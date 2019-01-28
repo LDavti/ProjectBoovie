@@ -16,7 +16,7 @@ class Movie extends Component {
                         src={`http://image.tmdb.org/t/p/w500/${this.props.images}`}
                         className="movie_poster"
                         id="movie_poster"
-                        style={{width: 150, height: 100, objectFit: "cover", margin: "0 10px"}}
+                        style={{width: 160, height: 100, objectFit: "cover", margin: "0 10px"}}
                     />
                     <p style={{display: "inline-block", maxWidth: 150, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"}}>
                         {this.props.title}

@@ -1,5 +1,6 @@
 .tabs {
     display: flex;
+    width: 85%;
     margin-bottom: 10px;
     border-bottom: 1px solid #6699ff;
     padding-left: 10px;

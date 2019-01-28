@@ -13,7 +13,7 @@ class Feed extends Component {
 
     render() {
         return (
-            <div>
+            <div className="all_feed" style={{width: "100%"}}>
                 <div className="feed_header">
                     <div className="header">
                         <div className="topnav">
@@ -42,8 +42,23 @@ class Feed extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="section_pagetabs">
-                    <PageTabs/>
+                <div className="tabs_users_section" style={{display:"flex"}}>
+                    <div className="section_pagetabs"
+                         style={{width: "80%"}}>
+                        <PageTabs/>
+                    </div>
+                    <div className="section_users"
+                         style={{width: "20%",justifyContent:"space-between",
+                             alignItems:"center",padding:10}}>
+                        <div>
+                            <p>USERS</p>
+                            <ul>
+                                <li>User</li>
+                                <li>User</li>
+                                <li>User</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
