@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import fire from "./config/Fire";
 import {Switch, Route, Redirect, withRouter} from "react-router-dom";
-import Welcome from "./Components/Welcome";
-import SignIn from "./Components/SignIn";
-import SignUp from "./Components/SignUp";
-import MyProfile from "./Components/MyProfile";
-import Feed from "./Components/Feed";
+import Welcome from "./Components/ComponentWelcome/Welcome";
+import SignIn from "./Components/ComponentSignIn/SignIn";
+import SignUp from "./Components/ComponentSignUp/SignUp";
+import MyProfile from "./Components/ComponentMyProfile/MyProfile";
+import Feed from "./Components/ComponentFeed/Feed";
 import './App.css';
 import { connectToUser } from './context/UserContext';
 
@@ -25,7 +25,7 @@ class App extends Component {
                     case "/":
                     case "/signin":
                     case "/signup":
-                        this.props.history.push("/myprofile");
+                        this.props.history.push("/feed");
                 }
             } else {
                 this.props.history.push("/");
@@ -43,14 +43,14 @@ class App extends Component {
                     {this.props.user ? (
                         <Switch>
                             <Route path="/feed" component={Feed}/>
-                            <Route path="/myprofile"  handle = {(props)=><MyProfile p = "jjj"/>}   component={MyProfile}/>
-                            <Redirect to="/myprofile" />
+                            <Route path="/myprofile" component={MyProfile}/>
+                            <Redirect to="/feed" />
                         </Switch>
                     ) : (
                         <Switch>
                             <Route path="/" exact component={Welcome}/>
                             <Route path="/signin" component={SignIn}/>
-                            <Route path="/signup"component={SignUp}/>
+                            <Route path="/signup" component={SignUp}/>
                             <Redirect to="/"/>
                         </Switch>
                     )}
@@ -62,75 +62,3 @@ class App extends Component {
 
 export default withRouter(connectToUser(App));
 
-// import React, {Component} from 'react';
-// import fire from "./config/Fire";
-// import {Switch, Route, Redirect, withRouter} from "react-router-dom";
-// import Welcome from "./Components/Welcome";
-// import SignIn from "./Components/SignIn";
-// import SignUp from "./Components/SignUp";
-// import MyProfile from "./Components/MyProfile";
-// import Feed from "./Components/Feed";
-// import './App.css';
-//
-//
-// class App extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             user: null,
-//             isLoaded: false
-//         };
-//     }
-//
-//     componentDidMount() {
-//         this.authListener();
-//     }
-//
-//     authListener() {
-//         fire.auth().onAuthStateChanged(user => {
-//             if (user) {
-//                 this.setState({user});
-//                 switch (this.props.location.pathname) {
-//                     case "/":
-//                     case "/signin":
-//                     case "/signup":
-//                         this.props.history.push("/feed");
-//                 }
-//                 this.setState({isLoaded: true});
-//             } else {
-//                 this.setState({user: null, isLoaded: true});
-//                 this.props.history.push("/");
-//                 //TODO change to switch
-//             }
-//         });
-//     }
-//
-//     render() {
-//         if (!this.state.isLoaded) {
-//             return (<div className="loader">Loading...</div>);
-//         } else {
-//             return (
-//                 <div>
-//                     {this.state.user ? (
-//                         <Switch>
-//                             <Route path="/feed" component={Feed}/>
-//                             <Route path="/myprofile" component={MyProfile}/>
-//                             <Redirect to="/feed"/>
-//                         </Switch>
-//                     ) : (
-//                         <Switch>
-//                             <Route path="/" exact component={Welcome}/>
-//                             <Route path="/signin" component={SignIn}/>
-//                             <Route path="/signup" component={SignUp}/>
-//                             <Redirect to="/"/>
-//                         </Switch>
-//                     )}
-//
-//
-//                 </div>
-//             );
-//         }
-//     }
-// }
-//
-// export default withRouter(App);

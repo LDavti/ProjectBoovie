@@ -1,23 +1,15 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import fire from "../config/Fire";
-import PageTabs from "./PageTabs";
-import feed_logo from '../feedimages/feed_logo.png';
+import fire from "../../config/Fire";
+import PageTabs from "../ComponentPageTabs/PageTabs";
+import feed_logo from '../../feedimages/feed_logo.png';
 
 
 class Feed extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //
-    //     };
-    //
-    // }
 
     logout = () => {
         fire.auth().signOut()
     };
-
 
     render() {
         return (
@@ -33,10 +25,11 @@ class Feed extends Component {
                             </div>
                             <div className="navs">
                                 <div className="navs_feed">
-                                    <Link to="/myprofile">My Profile</Link>
+                                    <Link to="/myprofile">
+                                        <p className="navs_feed_paragraph">My Profile</p>
+                                    </Link>
                                 </div>
                                 <div className="navs_notifications">
-                                    {/*<a href="#"> Notifications</a>*/}
                                     <p> Notifications</p>
                                 </div>
                                 <div className="navs_btn">
