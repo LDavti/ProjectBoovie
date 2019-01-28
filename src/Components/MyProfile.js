@@ -5,6 +5,8 @@ import myprofilebackimg from "../myprofileimages/myprofilebackimg.png"
 import my_profile_boovie_logo from "../myprofileimages/my_profile_boovie_logo.png";
 import exampleimg from "../myprofileimages/exampleimg.png";
 import fire from "../config/Fire";
+import firebase from "firebase"
+import { connectToUser } from '../context/UserContext';
 
 const backgroundStyle = {
     width: "100%",
@@ -15,14 +17,25 @@ const backgroundStyle = {
 };
 
 class MyProfile extends Component {
-
+    constructor(props) {
+        super(props);
+    }
+    // authListener() {
+    //     fire.auth().onAuthStateChanged(user => {
+    //         firebase.database().ref('user/').limitToFirst(1).once('child_added', snapshot => {
+    //             this.setState({fullname : snapshot.child('fullname').val(),
+    //                              usernam : snapshot.child('username').val() }) 
+     
+    //          })
+    //     });
+    // }
     logout = () => {
         fire.auth().signOut()
     };
-
-
+  
     render() {
         return (
+
             <div className="all_profile" style={backgroundStyle}>
                 <div className="all_profile_sections">
                     <div className="header">
@@ -60,15 +73,14 @@ class MyProfile extends Component {
                                 <div className="main_info_inpic">
                                     <button className="inpic">+</button>
                                 </div>
-                                <div className="names_username">
-                                    <p className="full_name_profile">
-                                        <span>Name</span>
-                                        <span>Username</span>
-                                    </p>
-                                </div>
-                                <div className="username_profile">
-                                    <p>@username</p>
-                                </div>
+                                    <div className="names_username">
+                                        <p className="full_name_profile">
+                                            <p>{this.props.user.fullname}</p>   
+                                        </p>
+                                    </div>
+                                    <div className="username_profile">
+                                        <p>{this.props.user.username}</p>
+                                    </div>
                                 <div className="following_follower">
                                     <div className="following">
                                         <p>
@@ -113,12 +125,11 @@ class MyProfile extends Component {
                                 <img src={exampleimg} alt="exampleimage"/>
                             </div>
                         </div>
-                    </div>
+                    </div>  
                 </div>
-            </div>
-        )
+            </div>                      
+        )                              
     }
 }
 
-
-export default MyProfile;
+export default connectToUser(MyProfile)

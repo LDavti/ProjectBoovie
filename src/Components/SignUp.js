@@ -3,6 +3,8 @@ import {Link, NavLink} from "react-router-dom";
 import './SignUp.css';
 import registration from "../signupimages/registration.png";
 import fire from "../config/Fire";
+import firebase from "firebase"
+import MyProfile from "./MyProfile"
 
 class SignUp extends Component {
     constructor() {
@@ -19,17 +21,18 @@ class SignUp extends Component {
     }
 
     signup = e => {
-        e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then((u) => {
-                console.log(u)
+       e.preventDefault();
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(user => {
+            fire.database().ref('user/' + user.user.uid).set({
+                fullname: this.state.name,
+                username: this.state.username
             })
-            .catch(error => {
-                console.log(error);
-            });
+        })      
     };
 
+    
     handleChange = (e) => {
+        
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
@@ -39,6 +42,7 @@ class SignUp extends Component {
         
       }
     errorOfFullname = () => {
+         
         let {name} = this.state;
         //let {validName} = this.validField
         (name.length > 0 && name.length < 40) ? this.validField.validName = true : this.validField.validName = false;
@@ -57,6 +61,7 @@ class SignUp extends Component {
     };
 
     errorOfUsername = () => {
+        
         let {username} = this.state;
         let pattern = /^@[a-zA-Z0-9._]*$/
         if(username.slice(0,1) !== "@")
@@ -89,23 +94,22 @@ class SignUp extends Component {
       password === confirm ? this.validField.validConfirm = true : this.validField.validConfirm = false;
       return <div className = "Error_fields">{(password === confirm || confirm === "") ? " " : "Must be equal to password"}</div>
     }
+    
     disabledCheckbox = () => {
         let {validName, validUsername, validEmail, validPassword, validConfirm} = this.validField;
         let { confirm } = this.state;
         return (validName === true && validUsername === true && validEmail === true
             && validPassword === true && validConfirm === true) ? false : true;
     };
-
-
-    // handleSubmit = (e) => {
-    //     e.preventDefault();
-    // };
-
+    
+    
     render() {
+       
         return (
+                     
             <div className="all_signup">
                 <div className="first_img">
-                    <img src={signupimg} alt="signupimg"/>
+                    <img src={registration} alt="signupimg"/>
                 </div>
                 <div className="signup_form">
                     <div className="signup_all">
@@ -117,7 +121,7 @@ class SignUp extends Component {
                                 Already have an Account?
                                 <Link to="/signin" className="go_to_signin">
                                     <span>Sign In</span>
-                                </Link>
+                                </Link>                              
                             </div>
                         </div>
                         <div className="form_all">
@@ -128,6 +132,7 @@ class SignUp extends Component {
                                     <input type="text" className="form_field_input" name="name" id="fullname"
                                            placeholder="Enter your full name"
                                            value={this.state.name}
+                                           
                                            onChange={this.handleChange}/>
                                            {this.errorOfFullname()}
                                 </div>
@@ -146,8 +151,7 @@ class SignUp extends Component {
                                            value={this.state.email}
                                            onChange={this.handleChange} />
                                            {this.errorOfEmail()} 
-                                </div>
-                                
+                                </div>                               
                                 <div className="form_field">
                                     <label className="form_field_label" htmlFor="Password">Password</label>
                                     <input type="password" className="form_field_input" id = "Password"
@@ -155,9 +159,7 @@ class SignUp extends Component {
                                         value={this.state.password}
                                         onChange={this.handleChange} />
                                         {this.errorOfPassword()}
-                                </div>
-                                
-                                
+                                </div>                                
                                 <div className="form_field">
                                     <label className="form_field_label" htmlFor=" Confirm Password"> Confirm
                                         Password</label>
@@ -165,9 +167,8 @@ class SignUp extends Component {
                                         placeholder="Confirm your password" name="confirm"
                                         value={this.state.confirm}
                                         onChange={this.handleChange}/>  
-                                        {this.errorOfConfirm()}     
+                                        {this.errorOfConfirm()}                                         
                                 </div>
-                                
                                 <div className="form_field">
                                     <div className="form_for_radio">
                                        <span className="radio_gender">Gender</span>
@@ -196,17 +197,18 @@ class SignUp extends Component {
                                             name="button"
                                             type = "submit"
                                             disabled = {!this.state.hasAgreed}
-                                            onClick={this.signup}
-                                    >Sign Up
-                                    </button>
+                                            onClick={this.signup}       
+                                    > Sign Up
+                                    </button> 
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
+             )
+        }
+    
 }
 
 export default SignUp;
