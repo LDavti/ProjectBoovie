@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Books from '../Components/Books';
-import Movies from '../Components/Movies';
+import Books from '../ComponentBook/Books';
+import Movies from '../ComponentMovie/Movies';
 import "./PageTabs.css";
 
 

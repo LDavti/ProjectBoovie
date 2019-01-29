@@ -1,30 +1,30 @@
 import React, {Component} from 'react';
-import Movie from '../Components/Movie';
+import Book from "./book";
 
-const url = "https://api.themoviedb.org/3/movie/";
-const img_url = "http://image.tmdb.org/t/p/";
-const api_key = "bb02a460de04ad1eb828328b58cab6bf";
+const url = "https://www.googleapis.com/books/v1";
+// const api_key = 'LvgVAflYuaRxQhQuyk6lg';
 
-class Movies extends Component {
+class Books extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            movies: [],
+            books: [],
             page: 1
         };
 
     }
 
     componentDidMount() {
-        this.getMovies();
+        this.getBooks();
     }
 
-    getMovies = () => {
-        fetch(`${url}popular?api_key=${api_key}&page=${this.state.page}`, {
+    getBooks = () => {
+        fetch(`${url}/volumes?q=""&startIndex=${(this.state.page - 1) * 20}&maxResults=20`, {
             method: "get",
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "no-cors"
         }).then(res => res.json()).then(json => {
-            this.setState({movies: json.results});
+            console.log(json);
+            this.setState({books: json.items});
         });
     };
 
@@ -32,14 +32,14 @@ class Movies extends Component {
         const {name} = e.target;
         this.setState(state => ({
             page: name === "next" ? state.page + 1 : state.page - 1
-        }), this.getMovies);
+        }), this.getBooks);
     };
 
     render() {
         return (
-            <div className="all_movies_page">
+            <div className="all_books_page">
                 <div
-                    className="all_movies"
+                    className="all_books"
                     style={{
                         display: "flex",
                         width: "100%",
@@ -48,20 +48,24 @@ class Movies extends Component {
                     }}
                 >
                     {
-                        this.state.movies.map(movie => (
-                            <Movie
-                                key={movie.id}
-                                title={movie.title}
-                                images={movie.poster_path}
+                        this.state.books.map(book => (
+                            <Book
+                                key={book.id}
+                                id={book.id}
+                                title={book.volumeInfo.title}
+                                images={book}
                             />
                         ))
                     }
-
                 </div>
                 <button name="next" onClick={this.pageChange}>next</button>
             </div>
-        );
+        )
     }
 }
 
-export default Movies;
+export default Books;
+
+
+
+

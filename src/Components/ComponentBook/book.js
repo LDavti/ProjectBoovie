@@ -15,7 +15,7 @@ class Book extends Component {
                     src={`http://books.google.com/books/content?id=${this.props.id}&printsec=frontcover&img=1&zoom=1&source=${this.props.book}`}
                     className="movie_poster"
                     id="movie_poster"
-                    style={{width: 200, height: 150, objectFit: "cover", margin: "0 10px"}}/>
+                    style={{width: 160, height: 100, objectFit: "cover", margin: "0 10px"}}/>
                     <p style={{display: "inline-block",
                         maxWidth: 150, overflow: "hidden",
                         textOverflow: "ellipsis", whiteSpace: "nowrap"}}>
