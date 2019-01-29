@@ -25,7 +25,7 @@ class App extends Component {
                     case "/":
                     case "/signin":
                     case "/signup":
-                        this.props.history.push("/myprofile");
+                        this.props.history.push("/feed");
                 }
             } else {
                 this.props.history.push("/");
@@ -43,8 +43,8 @@ class App extends Component {
                     {this.props.user ? (
                         <Switch>
                             <Route path="/feed" component={Feed}/>
-                            <Route path="/myprofile"  handle = {(props)=><MyProfile p = "jjj"/>}   component={MyProfile}/>
-                            <Redirect to="/myprofile" />
+                            <Route path="/myprofile" component ={MyProfile}  />
+                            <Redirect to="/feed" />
                         </Switch>
                     ) : (
                         <Switch>
