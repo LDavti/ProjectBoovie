@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import Book from "./book";
+import Pagination from "../ComponentPagination/Pagination";
+import "./books.css";
 
 const url = "https://www.googleapis.com/books/v1";
 // const api_key = 'LvgVAflYuaRxQhQuyk6lg';
+
 
 class Books extends Component {
     constructor(props) {
@@ -11,7 +14,6 @@ class Books extends Component {
             books: [],
             page: 1
         };
-
     }
 
     componentDidMount() {
@@ -28,25 +30,19 @@ class Books extends Component {
         });
     };
 
-    pageChange = (e) => {
-        const {name} = e.target;
-        this.setState(state => ({
-            page: name === "next" ? state.page + 1 : state.page - 1
-        }), this.getBooks);
+    pageChange = (pageNumber) => {
+        this.setState({
+            page: pageNumber
+        }, () => {
+            this.getBooks()
+        });
     };
+
 
     render() {
         return (
             <div className="all_books_page">
-                <div
-                    className="all_books"
-                    style={{
-                        display: "flex",
-                        width: "100%",
-                        alignItems: "flex-start",
-                        flexWrap: "wrap"
-                    }}
-                >
+                <div className="all_books">
                     {
                         this.state.books.map(book => (
                             <Book
@@ -58,7 +54,9 @@ class Books extends Component {
                         ))
                     }
                 </div>
-                <button name="next" onClick={this.pageChange}>next</button>
+                <Pagination
+                    page={this.state.page}
+                    pageChange={this.pageChange}/>
             </div>
         )
     }

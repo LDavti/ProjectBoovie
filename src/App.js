@@ -8,6 +8,7 @@ import MyProfile from "./Components/ComponentMyProfile/MyProfile";
 import Feed from "./Components/ComponentFeed/Feed";
 import './App.css';
 import { connectToUser } from './context/UserContext';
+import book from "./gifs/book.gif"
 
 class App extends Component {
     constructor(props) {
@@ -29,14 +30,14 @@ class App extends Component {
                 }
             } else {
                 this.props.history.push("/");
-                //TODO change to switch
+                // TODO change to switch
             }
         });
     }
 
     render() {
         if (!this.props.userIsLoaded) {
-            return (<div className="loader">Loading...</div>);
+            return (<img src={book} alt="thereisagif" className="loader"/>);
         } else {
             return (
                 <div>

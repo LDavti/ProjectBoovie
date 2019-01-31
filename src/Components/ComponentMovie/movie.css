@@ -4,13 +4,28 @@
     box-sizing: border-box;
 }
 
-.all_movie_style{
-    width: 100%;
+.all_movie_style {
     display: flex;
 }
 
-#movie_style{
+.movie_style {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.movie_style .movie_poster {
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+    margin: 0 10px;
+}
+
+.movie_style .movie_paragraph {
+    display: inline-block;
+    max-width: 150px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

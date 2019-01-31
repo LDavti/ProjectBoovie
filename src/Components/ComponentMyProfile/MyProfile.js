@@ -9,7 +9,7 @@ import fire from "../../config/Fire";
 // import SignUp from "../ComponentSignUp/SignUp";
 // import firebase from "firebase"
 // import {Context} from "./SignUp"
-import {Context} from "../../context/UserContext";
+// import {Context} from "../../context/UserContext";
 import { connectToUser } from '../../context/UserContext';
 
 const backgroundStyle = {

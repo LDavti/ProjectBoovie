@@ -1,24 +1,17 @@
 import React, {Component} from 'react';
+import "./book.css";
 
 class Book extends Component {
     render() {
         // console.log(this.props);
         return (
-            <div className="all_movie_style" style={{display: "flex"}}>
-                <div
-                    title={this.props.title}
-                    className="movie_style"
-                    id="movie_style"
-                    style={{display: "flex", justifyContent: "center",
-                        alignItems: "center", flexDirection: "column"}}>
-                    < img
+            <div className="all_book_style" >
+                <div title={this.props.title} className="book_style">
+                    <img
                     src={`http://books.google.com/books/content?id=${this.props.id}&printsec=frontcover&img=1&zoom=1&source=${this.props.book}`}
-                    className="movie_poster"
-                    id="movie_poster"
-                    style={{width: 160, height: 100, objectFit: "cover", margin: "0 10px"}}/>
-                    <p style={{display: "inline-block",
-                        maxWidth: 150, overflow: "hidden",
-                        textOverflow: "ellipsis", whiteSpace: "nowrap"}}>
+                    className="book_poster"
+                    />
+                    <p className="book_paragraph">
                         {this.props.title}
                     </p>
                 </div>
