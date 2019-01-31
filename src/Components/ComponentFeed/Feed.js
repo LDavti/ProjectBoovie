@@ -4,6 +4,7 @@ import fire from "../../config/Fire";
 import PageTabs from "../ComponentPageTabs/PageTabs";
 import feed_logo from '../../feedimages/feed_logo.png';
 import "./Feed.css";
+import Users from "../UsersComponent/Users";
 import book1 from "../../gifs/book1.gif";
 
 
@@ -11,7 +12,7 @@ class Feed extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            IsLoaded: false
+            IsLoaded: false,
         };
 
     }
@@ -65,14 +66,7 @@ class Feed extends Component {
                             <PageTabs/>
                         </div>
                         <div className="section_users">
-                            <div>
-                                <p>USERS</p>
-                                <ul>
-                                    <li>User</li>
-                                    <li>User</li>
-                                    <li>User</li>
-                                </ul>
-                            </div>
+                            <Users/>
                         </div>
                     </div>
                 </div>

@@ -176,7 +176,9 @@ class SignUp extends Component {
                                         <span className="radio_gender">Gender</span>
                                         <div>
                                             <input type="radio" id="male" name="human"
-                                                   style={{width: "15px", height: "15px"}} checked={this.state.human}/>
+                                                   style={{width: "15px", height: "15px"}}
+                                                   defaultChecked={this.state.human}
+                                            />
                                             <label htmlFor="male" className="malefemaleText">Male</label>
                                         </div>
                                         <div>

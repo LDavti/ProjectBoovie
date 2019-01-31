@@ -16,7 +16,7 @@ class Movies extends Component {
         this.state = {
             movies: [],
             page: 1,
-            IsLoaded: false
+            isLoading: false,
         };
 
     }
@@ -26,13 +26,16 @@ class Movies extends Component {
     }
 
     getMovies = () => {
+        this.setState({
+            isLoading: true
+        });
         fetch(`${url}popular?api_key=${api_key}&page=${this.state.page}`, {
             method: "get",
             "Access-Control-Allow-Origin": "*"
         }).then(res => res.json()).then(json => {
             this.setState({
                 movies: json.results,
-               IsLoaded: true
+                isLoading: false
             });
         });
     };
@@ -54,7 +57,7 @@ class Movies extends Component {
 
 
     render() {
-        if (!this.state.IsLoaded) {
+        if (this.state.isLoading) {
             return (<img src={film} alt="thereisagif" className="loader"/>);
         } else {
             return (
@@ -64,8 +67,7 @@ class Movies extends Component {
                             this.state.movies.map(movie => (
                                 <Movie
                                     key={movie.id}
-                                    title={movie.title}
-                                    images={movie.poster_path}
+                                    movie={movie}
                                 />
                             ))
                         }

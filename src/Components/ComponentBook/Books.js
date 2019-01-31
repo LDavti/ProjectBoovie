@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Book from "./book";
 import Pagination from "../ComponentPagination/Pagination";
 import "./books.css";
+import book1 from "../../gifs/book1.gif";
 
 const url = "https://www.googleapis.com/books/v1";
 // const api_key = 'LvgVAflYuaRxQhQuyk6lg';
@@ -12,7 +13,8 @@ class Books extends Component {
         super(props);
         this.state = {
             books: [],
-            page: 1
+            page: 1,
+            isLoading: false
         };
     }
 
@@ -21,12 +23,14 @@ class Books extends Component {
     }
 
     getBooks = () => {
+        this.setState({
+            isLoading: true
+        });
         fetch(`${url}/volumes?q=""&startIndex=${(this.state.page - 1) * 20}&maxResults=20`, {
             method: "get",
             "Access-Control-Allow-Origin": "no-cors"
         }).then(res => res.json()).then(json => {
-            console.log(json);
-            this.setState({books: json.items});
+            this.setState({books: json.items, isLoading: false});
         });
     };
 
@@ -40,6 +44,10 @@ class Books extends Component {
 
 
     render() {
+        if(this.state.isLoading){
+            return (<img src={book1} alt="thereisagif" className="loader"/>);
+        }
+
         return (
             <div className="all_books_page">
                 <div className="all_books">
