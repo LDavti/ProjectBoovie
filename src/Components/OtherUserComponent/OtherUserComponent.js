@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './MyProfile.css';
+import './OtherUserComponent.css';
 import {Link} from "react-router-dom";
 import myprofilebackimg from "../../myprofileimages/myprofilebackimg.png";
 import my_profile_boovie_logo from "../../myprofileimages/my_profile_boovie_logo.png";
@@ -10,7 +10,7 @@ import fire from "../../config/Fire";
 // import firebase from "firebase"
 // import {Context} from "./SignUp"
 // import {Context} from "../../context/UserContext";
-import {connectToUser} from '../../context/UserContext';
+// import { connectToUser } from '../../context/UserContext';
 
 const backgroundStyle = {
     width: "100%",
@@ -20,17 +20,14 @@ const backgroundStyle = {
     backgroundSize: "cover",
 };
 
-class MyProfile extends Component {
+class OtherUserProfile extends Component {
     constructor(props) {
 
         super(props);
 
-        // console.log(this.props.p);
+        console.log(props.match.params.id);
         this.state = {
-            // fullname : '',
-            // usernam : '',
-            movies: [],
-            books: []
+            user: null
         }
     }
 
@@ -45,71 +42,24 @@ class MyProfile extends Component {
     // }
 
     componentDidMount() {
-        const {user} = this.props;
-
-        const ref = fire.database().ref(`user/${user.uid}/movies`);
-        ref.on("value", (snapshot) => {
-            const movies = snapshot.val();
-            console.log(movies);
-            const moviesArray = [];
-            if (movies !== null) {
-                Object.keys(movies).forEach(key => {
-                    moviesArray.push({
-                        fireId: key,
-                        ...movies[key]
-                    })
-                });
-            }
-            // Object.keys(movies).forEach(key => {
-            //     moviesArray.push({
-            //         fireId: key,
-            //         ...movies[key]
-            //     })
-            // });
-
-            this.setState({
-                movies: moviesArray,
-                // books:booksArray
-            });
-        }, (errorObject) => {
-            console.log("The read failed: " + errorObject.code);
-        });
-
-        const ref1 = fire.database().ref(`user/${user.uid}/books`);
-        ref1.on("value", (snapshot) => {
-            const books = snapshot.val();
-            const booksArray = [];
-
-            if (books !== null) {
-                Object.keys(books).forEach(key => {
-                    booksArray.push({
-                        fireId: key,
-                        ...books[key]
-                    })
-                });
-            }
-            // Object.keys(books).forEach(key => {
-            //     booksArray.push({
-            //         fireId: key,
-            //         ...books[key]
-            //     })
-            // });
-
-            this.setState({books: booksArray});
-        }, (errorObject) => {
-            console.log("The read failed: " + errorObject.code);
-        });
+        const ref = fire.database().ref(`user/${this.props.match.params.id}`);
+        ref.on("value", snapshot => {
+            this.setState({user: snapshot.val()});
+        })
     }
+
 
     logout = () => {
         fire.auth().signOut()
     };
 
     render() {
+        const {user} = this.state;
+        if (user) {
 
-
-        return (
-
+            console.log(user, user.books);
+        }
+        return user ? (
             <div className="all_profile" style={backgroundStyle}>
                 <div className="all_profile_sections">
                     <div className="header">
@@ -146,15 +96,15 @@ class MyProfile extends Component {
                                          alt="Avatar"/>
                                 </div>
                                 <div className="main_info_inpic">
-                                    <button className="inpic">+</button>
+                                    <button className="inpic">Follow</button>
                                 </div>
                                 <div className="names_username">
                                     <p className="full_name_profile">
-                                        <span>{this.props.user.fullname}</span>
+                                        <span>{user.fullname}</span>
                                     </p>
                                 </div>
                                 <div className="username_profile">
-                                    <p>{this.props.user.username}</p>
+                                    <p>{user.username}</p>
                                 </div>
                                 <div className="following_follower">
                                     <div className="following">
@@ -162,7 +112,7 @@ class MyProfile extends Component {
                                             Following
                                         </p>
                                         <p>
-                                            {this.props.user.id}
+                                            45
                                         </p>
                                     </div>
                                     <div className="followers">
@@ -170,7 +120,7 @@ class MyProfile extends Component {
                                             Followers
                                         </p>
                                         <p>
-                                            {this.props.user.id}
+                                            45
                                         </p>
                                     </div>
                                 </div>
@@ -180,20 +130,21 @@ class MyProfile extends Component {
                             <div className="all_list">
                                 <div>
                                     <p>Books</p>
-                                    <p>{this.state.books.length}</p>
+                                    <p>{Object.keys(user.books).length}</p>
                                 </div>
                                 <div>
                                     <p>Movies</p>
-                                    <p>{this.state.movies.length}</p>
+                                    <p>50</p>
+                                </div>
+                                <div>
+                                    <p>Lists</p>
+                                    <p>7</p>
                                 </div>
                             </div>
                         </div>
                         <div className="movie_lover">
                             <div className="movie_lover_paragraph">
-                                <p>You are a
-                                    {(this.state.movies.length === this.state.books.length) ?
-                                        " movie and book" : this.state.movies.length > this.state.books.length ? " movie" : " book"
-                                    } lover</p>
+                                <p>Name is  a movie lover</p>
                             </div>
                             <div className="movie_lover_img">
                                 <img src={exampleimg} alt="exampleimage"/>
@@ -202,9 +153,8 @@ class MyProfile extends Component {
                     </div>
                 </div>
             </div>
-        )
+        ) : null
     }
 }
 
-export default connectToUser(MyProfile);
-
+export default OtherUserProfile;

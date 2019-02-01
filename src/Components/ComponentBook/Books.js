@@ -5,6 +5,7 @@ import "./books.css";
 import book1 from "../../gifs/book1.gif";
 
 const url = "https://www.googleapis.com/books/v1";
+
 // const api_key = 'LvgVAflYuaRxQhQuyk6lg';
 
 
@@ -43,7 +44,7 @@ class Books extends Component {
 
 
     render() {
-        if(this.state.isLoading){
+        if (this.state.isLoading) {
             return (<img src={book1} alt="thereisagif" className="loader"/>);
         }
 
@@ -54,9 +55,10 @@ class Books extends Component {
                         this.state.books.map(book => (
                             <Book
                                 key={book.id}
-                                id={book.id}
-                                title={book.volumeInfo.title}
-                                images={book}
+                                book={book}
+                                // id={book.id}
+                                // title={book.volumeInfo.title}
+                                // images={book}
                             />
                         ))
                     }

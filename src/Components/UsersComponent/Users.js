@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import fire from "firebase";
+import {Link} from "react-router-dom";
 
 class Users extends Component {
 
@@ -11,8 +12,6 @@ class Users extends Component {
     }
 
     componentDidMount() {
-        // const {user} = this.props;
-
         const ref = fire.database().ref(`user/`);
         ref.on("value", (snapshot) => {
             const allUsers = snapshot.val();
@@ -40,12 +39,16 @@ class Users extends Component {
             <div>
                 <p>USERS</p>
                 <div>
-                    {users.map(user=>
-                    <div>
-                        <div>{user.fullname}</div>
-                        <div>{user.username}</div>
-                    </div>
-                )}
+                    {
+                        users.map(user =>
+                            <Link to={`/user/${user.fireId}`} key={user.fireId}>
+                                <div >
+                                    <div>{user.fullname}</div>
+                                    <div>{user.username}</div>
+                                </div>
+                            </Link>
+                        )
+                    }
                 </div>
             </div>
         );
