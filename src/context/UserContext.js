@@ -39,7 +39,9 @@ class UserProvider extends Component {
         fire.auth().onAuthStateChanged(user => {
             if (user) {
                 fire.database().ref("user/" + user.uid).on("value", snapshot => {
-                    this.setState({user: snapshot.val(), userIsLoaded: true});
+                    const userData = snapshot.val();
+                    userData.uid = user.uid
+                    this.setState({user: userData, userIsLoaded: true});
                 })
             } else {
                 this.setState({user: null, userIsLoaded: true});

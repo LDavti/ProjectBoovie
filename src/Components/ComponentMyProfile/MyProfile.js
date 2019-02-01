@@ -9,7 +9,7 @@ import fire from "../../config/Fire";
 // import SignUp from "../ComponentSignUp/SignUp";
 // import firebase from "firebase"
 // import {Context} from "./SignUp"
-import {Context} from "../../context/UserContext";//
+// import {Context} from "../../context/UserContext";
 import { connectToUser } from '../../context/UserContext';
 
 const backgroundStyle = {
@@ -22,12 +22,15 @@ const backgroundStyle = {
 
 class MyProfile extends Component {
     constructor(props) {
+
         super(props);
-    
+
         // console.log(this.props.p);
         this.state = {
-            fullname : '',
-            usernam : ''
+            // fullname : '',
+            // usernam : '',
+            movies:[]
+
         }
     }
 
@@ -41,12 +44,33 @@ class MyProfile extends Component {
     //     });
     // }
 
+    componentDidMount(){
+        const {user} = this.props;
+
+        const ref = fire.database().ref(`user/${user.uid}/movies`);
+        ref.on("value", (snapshot) => {
+            const movies = snapshot.val();
+            const moviesArray = [];
+
+            Object.keys(movies).forEach(key => {
+                moviesArray.push({
+                    fireId: key,
+                    ...movies[key]
+                })
+            });
+
+            this.setState({movies: moviesArray});
+        }, (errorObject)=> {
+            console.log("The read failed: " + errorObject.code);
+        });
+    }
 
     logout = () => {
         fire.auth().signOut()
     };
 
     render() {
+
         return (
 
             <div className="all_profile" style={backgroundStyle}>
@@ -101,7 +125,7 @@ class MyProfile extends Component {
                                             Following
                                         </p>
                                         <p>
-                                            45
+                                            {this.props.user.id}
                                         </p>
                                     </div>
                                     <div className="followers">
@@ -109,7 +133,7 @@ class MyProfile extends Component {
                                             Followers
                                         </p>
                                         <p>
-                                            45
+                                            {this.props.user.id}
                                         </p>
                                     </div>
                                 </div>
@@ -119,15 +143,15 @@ class MyProfile extends Component {
                             <div className="all_list">
                                 <div>
                                     <p>Books</p>
-                                    <p>45</p>
+                                    <p>{this.state.movies.length}</p>
                                 </div>
                                 <div>
                                     <p>Movies</p>
-                                    <p>50</p>
+                                    <p>{this.state.movies.length}</p>
                                 </div>
                                 <div>
                                     <p>Lists</p>
-                                    <p>7</p>
+                                    <p>0</p>
                                 </div>
                             </div>
                         </div>

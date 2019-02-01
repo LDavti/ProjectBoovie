@@ -4,10 +4,21 @@
     box-sizing: border-box;
 }
 
-.section_pagetabs{
-    width:80%;
+.all_feed{
+    width:100%;
+}
+
+.tabs_users_section{
     display: flex;
 }
-.all_feed{
+
+.section_pagetabs{
+    width:70%;
+}
+
+.section_users{
+    width:30%;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }

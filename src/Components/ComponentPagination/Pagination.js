@@ -1,30 +1,46 @@
-import React from "react";
-import _ from "lodash"; // underscore
+import React, {Component} from 'react';
+import "./Pagination.css";
 
-const Pagination = (props) => {
-    const {itemsCount, pageSize, onPageChange, currentPage} = props;
-    // console.log(currentPage);
+class Pagination extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     // this.handleClick = this.handleClick.bind(this);
+    // }
 
-    const pagesCount = Math.ceil(itemsCount / pageSize);
-    if (pagesCount === 1) return null;
-    const pages = _.range(1, pagesCount + 1);
+    handleClick = (event) =>{
+        // console.log(Number(event.target.id), 'Number(event.target.id)');
+        this.props.pageChange( Number(event.target.id));
+    };
 
-    return (
-        <nav>
-            <ul className="pagination">
-                {pages.map(page => (
-                    <li key={page} className={page === currentPage ? "page-item active" : "page-item"}>
-                        <a
-                            className="page-link"
-                            onClick={() => onPageChange(page)}
-                        >
-                            {page}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </nav>
-    )
-};
+    render() {
+        const {page}=this.props;
+        const pageNumbers = [];
+        for (let i = 1; i <= 10; i++) {
+            pageNumbers.push(i);
+        }
+
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <li
+                    className={number === page ? "active" : ""}
+                    key={number}
+                    id={number}
+                    onClick={this.handleClick}
+                >
+                    {number}
+                </li>
+            );
+        });
+
+        return (
+            <div>
+                <ul className="pagination">
+                    {renderPageNumbers}
+                </ul>
+            </div>
+        );
+    }
+}
 
 export default Pagination;
+
