@@ -21,7 +21,7 @@ class UserProvider extends Component {
             if (user) {
                 fire.database().ref("user/" + user.uid).on("value", snapshot => {
                     const userData = snapshot.val();
-                    userData.uid = user.uid
+                    userData.uid = user.uid;
                     this.setState({user: userData, userIsLoaded: true});
                 })
             } else {

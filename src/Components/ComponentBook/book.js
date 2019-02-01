@@ -1,18 +1,35 @@
 import React, {Component} from 'react';
 import "./book.css";
+import { connectToUser } from '../../context/UserContext';
+import fire from "../../config/Fire";
 
 class Book extends Component {
+
+    handeleClick=()=>{
+        const { book, user } = this.props;
+        const { id, volumeInfo } = book;
+
+        fire.database().ref(`user/${user.uid}/books`).push().set({
+            bookId: id,
+            images: book,
+            title: volumeInfo.title
+        });
+
+    };
+
     render() {
-        // console.log(this.props);
+        const {book}=this.props;
+
         return (
             <div className="all_book_style" >
-                <div title={this.props.title} className="book_style">
+                <div title={book.volumeInfo.title} className="book_style">
                     <img
-                    src={`http://books.google.com/books/content?id=${this.props.id}&printsec=frontcover&img=1&zoom=1&source=${this.props.book}`}
+                    src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&source=${book}`}
                     className="book_poster"
+                    onClick={this.handeleClick}
                     />
                     <p className="book_paragraph">
-                        {this.props.title}
+                        {book.volumeInfo.title}
                     </p>
                 </div>
             </div>
@@ -20,4 +37,4 @@ class Book extends Component {
     }
 }
 
-export default Book;
+export default connectToUser(Book);
