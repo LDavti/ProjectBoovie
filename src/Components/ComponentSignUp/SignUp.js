@@ -26,7 +26,11 @@ class SignUp extends Component {
         fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(user => {
             fire.database().ref('user/' + user.user.uid).set({
                 fullname: this.state.name,
-                username: this.state.username
+                username: this.state.username,
+                following : {},
+                followers : {},
+                books : 0,
+                movies : 0
             })
         })
     };
@@ -40,7 +44,7 @@ class SignUp extends Component {
         this.setState({
             [name]: value
         });
-
+       
     };
     errorOfFullname = () => {
 
@@ -134,7 +138,6 @@ class SignUp extends Component {
                                     <input type="text" className="form_field_input" name="name" id="fullname"
                                            placeholder="Enter your full name"
                                            value={this.state.name}
-
                                            onChange={this.handleChange}/>
                                     {this.errorOfFullname()}
                                 </div>

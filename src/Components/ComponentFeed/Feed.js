@@ -1,16 +1,34 @@
-import React, {Component} from 'react';
+import React, { Component, createContext } from "react";
 import {Link} from "react-router-dom";
 import fire from "../../config/Fire";
 import PageTabs from "../ComponentPageTabs/PageTabs";
 import feed_logo from '../../feedimages/feed_logo.png';
-
-
+import { connectToUser } from '../../context/UserContext';
+import UserProfile from "../ComponentUserProfile/UserProfile";
+export const p = createContext();
+const {Provider, Consumer} = createContext({})
 class Feed extends Component {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            
+        }
+    }
 
     logout = () => {
         fire.auth().signOut()
     };
+    
+    handleClick = (e) => {
+        console.log(e.target.innerHTML)
+        let username = e.target.innerHTML
+        fire.auth().onAuthStateChanged(user =>
+        fire.database().ref(`user/${user.uid}`).update({currontUser : username})
+        )
+    }
 
+    
     render() {
         return (
             <div className="all_feed" style={{width: "100%"}}>
@@ -51,13 +69,10 @@ class Feed extends Component {
                          style={{width: "20%",justifyContent:"space-between",
                              alignItems:"center",padding:10}}>
                         <div>
-                            <p>USERS</p>
-                            <ul>
-                                <li>User</li>
-                                <li>User</li>
-                                <li>User</li>
-                            </ul>
-                        </div>
+                           
+       {(this.props.username)!== null ? <ul >{(this.props.username).map((user) =>  <Link to = '/userprofile' >
+        <li key = {user} onClick = {this.handleClick}>{user}</li></Link>)}</ul> : null}
+                            </div>
                     </div>
                 </div>
             </div>
@@ -65,4 +80,4 @@ class Feed extends Component {
     }
 }
 
-export default Feed;
+export default connectToUser(Feed)

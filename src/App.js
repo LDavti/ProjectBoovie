@@ -8,6 +8,7 @@ import MyProfile from "./Components/ComponentMyProfile/MyProfile";
 import Feed from "./Components/ComponentFeed/Feed";
 import './App.css';
 import { connectToUser } from './context/UserContext';
+import UserProfile from './Components/ComponentUserProfile/UserProfile';
 
 class App extends Component {
     constructor(props) {
@@ -44,6 +45,7 @@ class App extends Component {
                         <Switch>
                             <Route path="/feed" component={Feed}/>
                             <Route path="/myprofile" component={MyProfile}/>
+                            <Route path="/userprofile" component={UserProfile}/>
                             <Redirect to="/feed" />
                         </Switch>
                     ) : (

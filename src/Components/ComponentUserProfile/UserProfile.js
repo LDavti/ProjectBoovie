@@ -1,16 +1,19 @@
-import React, {Component} from 'react';
-import './MyProfile.css';
+import React, {Component, createContext} from 'react';
+import './UserProfile.css'
 import {Link} from "react-router-dom";
 import myprofilebackimg from "../../myprofileimages/myprofilebackimg.png";
 import my_profile_boovie_logo from "../../myprofileimages/my_profile_boovie_logo.png";
 import exampleimg from "../../myprofileimages/exampleimg.png";
 import fire from "../../config/Fire";
+//import Feed from "../ComponentFeed/Feed"
+
 // import SignUp from "./SignUp";
 // import SignUp from "../ComponentSignUp/SignUp";
 // import firebase from "firebase"
 // import {Context} from "./SignUp"
-import {Context} from "../../context/UserContext";//
-import { connectToUser } from '../../context/UserContext';
+// import {Context} from "../../context/UserContext";
+ import { connectToUser } from '../../context/UserContext';
+// import { createContext } from 'vm';
 
 const backgroundStyle = {
     width: "100%",
@@ -20,16 +23,17 @@ const backgroundStyle = {
     backgroundSize: "cover",
 };
 
-class MyProfile extends Component {
-    constructor(props) {
-        super(props);
-    
-        // console.log(this.props.p);
-        this.state = {
-            fullname : '',
-            usernam : ''
-        }
-    }
+class UserProfile extends Component {
+    // constructor(props) {
+    //
+    //     super(props);
+    //
+    //     console.log(this.props.p);
+    //     this.state = {
+    //         fullname : '',
+    //         usernam : ''
+    //     }
+    // }
 
     // authListener() {
     //     fire.auth().onAuthStateChanged(user => {
@@ -46,10 +50,24 @@ class MyProfile extends Component {
         fire.auth().signOut()
     };
 
+    usersFollow = () => {
+        //let h = this.props.following
+        
+        fire.database().ref('user/').orderByChild('username').equalTo(this.props.refUserUsername).on('value',snap=>{
+            
+            let h = snap.val()
+            console.log(h)
+            // fire.database().ref().set({
+            //     h : 15
+            // })
+        })
+       
+    }
     render() {
         return (
 
             <div className="all_profile" style={backgroundStyle}>
+           
                 <div className="all_profile_sections">
                     <div className="header">
                         <div className="topnav">
@@ -85,15 +103,15 @@ class MyProfile extends Component {
                                          alt="Avatar"/>
                                 </div>
                                 <div className="main_info_inpic">
-                                    <button className="inpic">+</button>
+                                    <button className="inpic" onClick = {this.usersFollow}>Follow</button>
                                 </div>
                                 <div className="names_username">
                                     <p className="full_name_profile">
-                                        <span>{this.props.user.fullname}</span>
+                                      <span>{(this.props.refUserFullname)}</span> 
                                     </p>
                                 </div>
                                 <div className="username_profile">
-                                    <p>{this.props.user.username}</p>
+                                    <p>{this.props.refUserUsername}</p>
                                 </div>
                                 <div className="following_follower">
                                     <div className="following">
@@ -101,7 +119,7 @@ class MyProfile extends Component {
                                             Following
                                         </p>
                                         <p>
-                                            45
+                                           {this.props.following}
                                         </p>
                                     </div>
                                     <div className="followers">
@@ -133,7 +151,7 @@ class MyProfile extends Component {
                         </div>
                         <div className="movie_lover">
                             <div className="movie_lover_paragraph">
-                                <p>You are a movie lover</p>
+                                <p>Name is  a movie lover</p>
                             </div>
                             <div className="movie_lover_img">
                                 <img src={exampleimg} alt="exampleimage"/>
@@ -146,5 +164,4 @@ class MyProfile extends Component {
     }
 }
 
-export default connectToUser(MyProfile);
-
+export default connectToUser(UserProfile);

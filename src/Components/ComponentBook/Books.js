@@ -11,9 +11,7 @@ class Books extends Component {
             books: [],
             page: 1
         };
-
     }
-
     componentDidMount() {
         this.getBooks();
     }
@@ -63,7 +61,6 @@ class Books extends Component {
         )
     }
 }
-
 export default Books;
 
 
