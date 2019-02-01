@@ -12,6 +12,7 @@ class Users extends Component {
     }
 
     componentDidMount() {
+        console.log("asds");
         const ref = fire.database().ref(`user/`);
         ref.on("value", (snapshot) => {
             const allUsers = snapshot.val();

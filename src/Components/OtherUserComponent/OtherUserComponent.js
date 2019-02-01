@@ -134,17 +134,16 @@ class OtherUserProfile extends Component {
                                 </div>
                                 <div>
                                     <p>Movies</p>
-                                    <p>50</p>
-                                </div>
-                                <div>
-                                    <p>Lists</p>
-                                    <p>7</p>
+                                    <p>{Object.keys(user.movies).length}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="movie_lover">
                             <div className="movie_lover_paragraph">
-                                <p>Name is  a movie lover</p>
+                                <p>{user.fullname} is  a
+                                    {(Object.keys(user.movies).length === Object.keys(user.books).length) ?
+                                    " movie and book" : Object.keys(user.movies).length  > Object.keys(user.books).length ? " movie" : " book"
+                                } lover</p>
                             </div>
                             <div className="movie_lover_img">
                                 <img src={exampleimg} alt="exampleimage"/>

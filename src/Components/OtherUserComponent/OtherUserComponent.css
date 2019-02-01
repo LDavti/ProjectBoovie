@@ -253,7 +253,7 @@
     border-radius: 12px;
     background-color: #6699ff;
     display: flex;
-    justify-content:space-between;
+    justify-content:space-around;
     position: absolute;
     animation: roller;
     animation-iteration-count: 1;
@@ -262,7 +262,7 @@
     animation-timing-function: ease-out;
     overflow: hidden;
     padding: 17px;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 @keyframes roller{
     0%   {top: 0;left:30%}
