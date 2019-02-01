@@ -14,11 +14,14 @@ ReactDOM.render(<BrowserRouter>
                  </BrowserRouter>, document.getElementById('root'));
 =======
 import {UserProvider} from "./context/UserContext";
+//import {ConnectToOtherUser} from "./ComponentUserProfile/UserProfile"
+import {Feed} from './Components/ComponentFeed/Feed';
 
 
 ReactDOM.render(<BrowserRouter>
     <UserProvider>
         <App/>
+            
     </UserProvider>
 </BrowserRouter>, document.getElementById('root'));
 >>>>>>> origin/tigran
