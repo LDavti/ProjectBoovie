@@ -4,8 +4,7 @@ import './SignUp.css';
 import registration from "../../signupimages/registration.png";
 import fire from "../../config/Fire";
 // import firebase from "firebase";
-// import MyProfile from "./ComponentMyProfile/MyProfile";
-// import MyProfile from "../ComponentMyProfile/MyProfile";
+
 
 class SignUp extends Component {
     constructor() {
@@ -23,12 +22,22 @@ class SignUp extends Component {
 
     signup = e => {
         e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(user => {
-            fire.database().ref('user/' + user.user.uid).set({
-                fullname: this.state.name,
-                username: this.state.username
-            })
+        fire.database().ref("/user/").orderByChild("username").equalTo(this.state.username).once("value", snapshot => {
+            const user = snapshot.val();
+            if (user) {
+                alert(`User with ${this.state.username} username already exists`);
+            } else {
+                fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(user => {
+                    fire.database().ref('user/' + user.user.uid).set({
+                        fullname: this.state.name,
+                        username: this.state.username
+                    })
+                }).catch(error => {
+                    alert(error);
+                });
+            }
         })
+
     };
 
 
@@ -127,7 +136,6 @@ class SignUp extends Component {
                             </div>
                         </div>
                         <div className="form_all">
-                            {/*<form className="form_fields" onSumbit={this.handleSubmit}>*/}
                             <form className="form_fields">
                                 <div className="form_field">
                                     <label className="form_field_label" htmlFor="fullname">Full Name</label>

@@ -5,11 +5,6 @@ import myprofilebackimg from "../../myprofileimages/myprofilebackimg.png";
 import my_profile_boovie_logo from "../../myprofileimages/my_profile_boovie_logo.png";
 import exampleimg from "../../myprofileimages/exampleimg.png";
 import fire from "../../config/Fire";
-// import SignUp from "./SignUp";
-// import SignUp from "../ComponentSignUp/SignUp";
-// import firebase from "firebase"
-// import {Context} from "./SignUp"
-// import {Context} from "../../context/UserContext";
 import {connectToUser} from '../../context/UserContext';
 
 const backgroundStyle = {
@@ -22,94 +17,103 @@ const backgroundStyle = {
 
 class MyProfile extends Component {
     constructor(props) {
-
         super(props);
-
-        // console.log(this.props.p);
         this.state = {
-            // fullname : '',
-            // usernam : '',
             movies: [],
-            books: []
+            books: [],
+            followingsCount: 0,
+            showBooks: false,
+            showMovies: false
         }
     }
-
-    // authListener() {
-    //     fire.auth().onAuthStateChanged(user => {
-    //         firebase.database().ref('user/').limitToFirst(1).once('child_added', snapshot => {
-    //             this.setState({fullname : snapshot.child('fullname').val(),
-    //                 usernam : snapshot.child('username').val() })
-    //
-    //         })
-    //     });
-    // }
 
     componentDidMount() {
         const {user} = this.props;
 
-        const ref = fire.database().ref(`user/${user.uid}/movies`);
-        ref.on("value", (snapshot) => {
-            const movies = snapshot.val();
-            console.log(movies);
-            const moviesArray = [];
-            if (movies !== null) {
-                Object.keys(movies).forEach(key => {
-                    moviesArray.push({
-                        fireId: key,
-                        ...movies[key]
-                    })
-                });
-            }
-            // Object.keys(movies).forEach(key => {
-            //     moviesArray.push({
-            //         fireId: key,
-            //         ...movies[key]
-            //     })
-            // });
+        this.moviesRef = fire.database().ref(`user/${user.uid}/movies`);
+        this.moviesRef.on("value", this.onMoviesLoaded);
 
-            this.setState({
-                movies: moviesArray,
-                // books:booksArray
-            });
-        }, (errorObject) => {
-            console.log("The read failed: " + errorObject.code);
-        });
+        this.booksRef = fire.database().ref(`user/${user.uid}/books`);
+        this.booksRef.on("value",this.onBooksLoaded);
 
-        const ref1 = fire.database().ref(`user/${user.uid}/books`);
-        ref1.on("value", (snapshot) => {
-            const books = snapshot.val();
-            const booksArray = [];
-
-            if (books !== null) {
-                Object.keys(books).forEach(key => {
-                    booksArray.push({
-                        fireId: key,
-                        ...books[key]
-                    })
-                });
-            }
-            // Object.keys(books).forEach(key => {
-            //     booksArray.push({
-            //         fireId: key,
-            //         ...books[key]
-            //     })
-            // });
-
-            this.setState({books: booksArray});
-        }, (errorObject) => {
-            console.log("The read failed: " + errorObject.code);
-        });
+        this.ref = fire.database().ref(`user/`);
+        this.ref.on("value", this.onUsersLoaded);
     }
+
+    componentWillUnmount(){
+        this.moviesRef.off("value", this.onMoviesLoaded);
+        this.booksRef.off("value", this.onBooksLoaded);
+        this.ref.off("value", this.onUsersLoaded);
+    }
+
+    onMoviesLoaded = (snapshot)=>{
+        const movies = snapshot.val();
+        // console.log(movies);
+        const moviesArray = [];
+        if (movies !== null) {
+            Object.keys(movies).forEach(key => {
+                moviesArray.push({
+                    fireId: key,
+                    ...movies[key]
+                })
+            });
+        }
+
+        this.setState({
+            movies: moviesArray
+        });
+    };
+
+    onBooksLoaded = (snapshot)=>{
+        const books = snapshot.val();
+        const booksArray = [];
+
+        if (books !== null) {
+            Object.keys(books).forEach(key => {
+                booksArray.push({
+                    fireId: key,
+                    ...books[key]
+                })
+            });
+        }
+        this.setState({books: booksArray});
+    };
+
+    onUsersLoaded = (snapshot) => {
+        const allUsers = snapshot.val();
+        let followingsCount = 0;
+
+        const that = this;
+        Object.keys(allUsers).forEach(key1 => {
+            const user = allUsers[key1];
+            if(user.followers){
+                Object.keys(user.followers).forEach(key2 => {
+                    const follower = user.followers[key2];
+                    if(follower.followerId === that.props.user.uid){
+                        followingsCount++;
+                    }
+                });
+            }
+        });
+
+        this.setState({followingsCount});
+    };
 
     logout = () => {
         fire.auth().signOut()
     };
 
+    toggleBooks = (e) => {
+        this.setState(state => ({showBooks: !state.showBooks}));
+    };
+
+    toggleMovies = (e) => {
+        this.setState(state => ({showMovies: !state.showMovies}));
+    };
+
     render() {
-
-
+        console.log(this.state.movies);
         return (
-
             <div className="all_profile" style={backgroundStyle}>
                 <div className="all_profile_sections">
                     <div className="header">
@@ -117,17 +121,12 @@ class MyProfile extends Component {
                             <div className="topnav_logo">
                                 <img src={my_profile_boovie_logo} alt="logoImg"/>
                             </div>
-                            <div className="topnav_input">
-                                <input type="text" placeholder="Search.."/>
-                            </div>
+                            <div className="topnav_input"/>
                             <div className="navs">
                                 <div className="navs_feed">
                                     <Link to="/Feed">
                                         <p className="navs_feed_paragraph">Feed</p>
                                     </Link>
-                                </div>
-                                <div className="navs_notifications">
-                                    <p> Notifications</p>
                                 </div>
                                 <div className="navs_btn">
                                     <button className="logout" onClick={this.logout}>
@@ -162,7 +161,7 @@ class MyProfile extends Component {
                                             Following
                                         </p>
                                         <p>
-                                            {this.props.user.id}
+                                            {this.state.followingsCount}
                                         </p>
                                     </div>
                                     <div className="followers">
@@ -170,7 +169,10 @@ class MyProfile extends Component {
                                             Followers
                                         </p>
                                         <p>
-                                            {this.props.user.id}
+                                            {
+                                                this.props.user.followers
+                                                ? Object.keys(this.props.user.followers).length
+                                                : 0 }
                                         </p>
                                     </div>
                                 </div>
@@ -178,11 +180,11 @@ class MyProfile extends Component {
                         </div>
                         <div className="books_movies_lists">
                             <div className="all_list">
-                                <div>
+                                <div onClick={this.toggleBooks} style={{cursor: "pointer"}}>
                                     <p>Books</p>
                                     <p>{this.state.books.length}</p>
                                 </div>
-                                <div>
+                                <div onClick={this.toggleMovies} style={{cursor: "pointer"}}>
                                     <p>Movies</p>
                                     <p>{this.state.movies.length}</p>
                                 </div>
@@ -201,6 +203,52 @@ class MyProfile extends Component {
                         </div>
                     </div>
                 </div>
+                {
+                    this.state.showBooks && this.state.books.length > 0 ? (
+                        <div className="backdrop" onClick={this.toggleBooks}>
+                            <div className="modal">
+                                {
+                                    this.state.books.map(book => (
+                                        <div key={book.fireId} style={{marginBottom: 10}}>
+                                            <h2>{book.title}</h2>
+                                            <div style={{display: "flex"}}>
+                                                <img
+                                                    style={{maxHeight: "fit-content"}}
+                                                    alt={book.title}
+                                                    src={book.images.volumeInfo.imageLinks.thumbnail}
+                                                />
+                                                <p style={{padding: "0 10px"}}>
+                                                    {book.images.volumeInfo.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    ) : this.state.showMovies && this.state.movies.length > 0 ? (
+                        <div className="backdrop" onClick={this.toggleMovies}>
+                            <div className="modal">
+                                {
+                                    this.state.movies.map(movie => (
+                                        <div key={movie.fireId} style={{marginBottom: 10}}>
+                                            <h2>{movie.title}</h2>
+                                            <div style={{display: "flex"}}>
+                                                <img
+                                                    style={{maxHeight: "fit-content",width:150,height:150}}
+                                                    src={`http://image.tmdb.org/t/p/w500/${movie.images}`}
+                                                />
+                                                <p style={{padding: "0 10px"}}>
+                                                    {movie.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    ) : null
+                }
             </div>
         )
     }

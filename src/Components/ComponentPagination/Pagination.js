@@ -2,13 +2,8 @@ import React, {Component} from 'react';
 import "./Pagination.css";
 
 class Pagination extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     // this.handleClick = this.handleClick.bind(this);
-    // }
 
     handleClick = (event) =>{
-        // console.log(Number(event.target.id), 'Number(event.target.id)');
         this.props.pageChange( Number(event.target.id));
     };
 

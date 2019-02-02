@@ -29,7 +29,7 @@ class Feed extends Component {
 
     render() {
         if (!this.state.IsLoaded) {
-            return (<img src={book1} alt="thereisagif" className="loader"/>);
+            return (<img src={book1} alt="thereisagif" className="loader1"/>);
         } else {
             return (
                 <div className="all_feed">
@@ -39,17 +39,12 @@ class Feed extends Component {
                                 <div className="topnav_logo">
                                     <img src={feed_logo} alt="logoImg"/>
                                 </div>
-                                <div className="topnav_input">
-                                    <input type="text" placeholder="Search.."/>
-                                </div>
+                                <div className="topnav_input"/>
                                 <div className="navs">
                                     <div className="navs_feed">
                                         <Link to="/myprofile">
                                             <p className="navs_feed_paragraph">My Profile</p>
                                         </Link>
-                                    </div>
-                                    <div className="navs_notifications">
-                                        <p> Notifications</p>
                                     </div>
                                     <div className="navs_btn">
                                         <button className="logout"

@@ -6,9 +6,6 @@ import book1 from "../../gifs/book1.gif";
 
 const url = "https://www.googleapis.com/books/v1";
 
-// const api_key = 'LvgVAflYuaRxQhQuyk6lg';
-
-
 class Books extends Component {
     constructor(props) {
         super(props);
@@ -57,9 +54,6 @@ class Books extends Component {
                             <Book
                                 key={book.id}
                                 book={book}
-                                // id={book.id}
-                                // title={book.volumeInfo.title}
-                                // images={book}
                             />
                         ))
                     }
