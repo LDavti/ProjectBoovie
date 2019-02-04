@@ -12,7 +12,7 @@
 .header {
     width: 100%;
     height: 10vh;
-    background-color:#483192;
+    background-color: rgb(8, 29, 68);;
 }
 
 .topnav {
@@ -30,7 +30,7 @@
 }
 
 .topnav_logo {
-    width: 20%;
+    width: 30%;
     height: 100%;
     color: white;
     display: flex;
@@ -162,7 +162,7 @@
 }
 
 .main_info_inpic .inpic {
-    background-color: #483192;
+    background-color: #6699ff;
     width: 50px;
     height: 50px;
     justify-content: center;
@@ -179,7 +179,7 @@
 }
 
 .other_names_username .other_full_name_profile {
-    color: white;
+    color: #6699ff;
     font-family: 'Actor', sans-serif;
     font-size: 30px;
     font-weight: bold;
@@ -198,7 +198,7 @@
 }
 
 .other_username_profile p {
-    color:white;
+    color:#6699ff;
     font-family: 'Actor', sans-serif;
     font-size: 30px;
     font-weight: bold;
@@ -213,7 +213,7 @@
 }
 
 .otheruser_following_follower div {
-    color:white;
+    color:#6699ff;
     font-family: 'Actor', sans-serif;
     font-size: 30px;
     font-weight: bold;
@@ -241,7 +241,7 @@
     align-items: right;
     border: 1px solid #081d44;
     border-radius: 12px;
-    background-color: #483192;
+    background-color: #6699ff;
     display: flex;
     justify-content:space-around;
     position: absolute;

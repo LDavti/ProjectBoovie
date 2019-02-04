@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import './MyProfile.css';
 import {Link} from "react-router-dom";
@@ -22,7 +21,9 @@ class MyProfile extends Component {
         this.state = {
             movies: [],
             books: [],
-            followingsCount: 0
+            followingsCount: 0,
+            showBooks: false,
+            showMovies: false
         }
     }
 
@@ -47,7 +48,7 @@ class MyProfile extends Component {
 
     onMoviesLoaded = (snapshot)=>{
         const movies = snapshot.val();
-        console.log(movies);
+        // console.log(movies);
         const moviesArray = [];
         if (movies !== null) {
             Object.keys(movies).forEach(key => {
@@ -102,7 +103,16 @@ class MyProfile extends Component {
         fire.auth().signOut()
     };
 
+    toggleBooks = (e) => {
+        this.setState(state => ({showBooks: !state.showBooks}));
+    };
+
+    toggleMovies = (e) => {
+        this.setState(state => ({showMovies: !state.showMovies}));
+    };
+
     render() {
+        console.log(this.state.movies);
         return (
             <div className="all_profile" style={backgroundStyle}>
                 <div className="all_profile_sections">
@@ -170,11 +180,11 @@ class MyProfile extends Component {
                         </div>
                         <div className="books_movies_lists">
                             <div className="all_list">
-                                <div>
+                                <div onClick={this.toggleBooks} style={{cursor: "pointer"}}>
                                     <p>Books</p>
                                     <p>{this.state.books.length}</p>
                                 </div>
-                                <div>
+                                <div onClick={this.toggleMovies} style={{cursor: "pointer"}}>
                                     <p>Movies</p>
                                     <p>{this.state.movies.length}</p>
                                 </div>
@@ -193,6 +203,52 @@ class MyProfile extends Component {
                         </div>
                     </div>
                 </div>
+                {
+                    this.state.showBooks && this.state.books.length > 0 ? (
+                        <div className="backdrop" onClick={this.toggleBooks}>
+                            <div className="modal">
+                                {
+                                    this.state.books.map(book => (
+                                        <div key={book.fireId} style={{marginBottom: 10}}>
+                                            <h2>{book.title}</h2>
+                                            <div style={{display: "flex"}}>
+                                                <img
+                                                    style={{maxHeight: "fit-content"}}
+                                                    alt={book.title}
+                                                    src={book.images.volumeInfo.imageLinks.thumbnail}
+                                                />
+                                                <p style={{padding: "0 10px"}}>
+                                                    {book.images.volumeInfo.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    ) : this.state.showMovies && this.state.movies.length > 0 ? (
+                        <div className="backdrop" onClick={this.toggleMovies}>
+                            <div className="modal">
+                                {
+                                    this.state.movies.map(movie => (
+                                        <div key={movie.fireId} style={{marginBottom: 10}}>
+                                            <h2>{movie.title}</h2>
+                                            <div style={{display: "flex"}}>
+                                                <img
+                                                    style={{maxHeight: "fit-content",width:150,height:150}}
+                                                    src={`http://image.tmdb.org/t/p/w500/${movie.images}`}
+                                                />
+                                                <p style={{padding: "0 10px"}}>
+                                                    {movie.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    ) : null
+                }
             </div>
         )
     }
