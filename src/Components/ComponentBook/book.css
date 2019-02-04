@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.all_book_style {
+    display: flex;
+}
+
+.book_style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.book_style .book_poster {
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+    margin: 0 10px;
+}
+
+.book_style .book_paragraph {
+    display: inline-block;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

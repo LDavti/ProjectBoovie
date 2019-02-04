@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import './Welcome.css';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {IoMdHeart} from "react-icons/io";
-import welfirst from "../welcomeimages/welfirst.png";
-import welsecond from "../welcomeimages/welsecond.png";
-import welthird from "../welcomeimages/welthird.png";
-import welfour from "../welcomeimages/welfour.png";
-import boovie_logo_new from "../welcomeimages/boovie_logo_new.png";
-import books from "../welcomeimages/books.png"
+import welfirst from "../../welcomeimages/welfirst.png";
+import welsecond from "../../welcomeimages/welsecond.png";
+import welthird from "../../welcomeimages/welthird.png";
+import welfour from "../../welcomeimages/welfour.png";
+import boovie_logo_new from "../../welcomeimages/boovie_logo_new.png";
+import books from "../../welcomeimages/books.png"
 
 class Welcome extends Component {
     render() {
@@ -23,8 +23,6 @@ class Welcome extends Component {
                     <div className="welcome_text">
                         <div className="about_boovie">
                             <div className="line_first">
-                                {/*<img className="logo" src={boovie_logo}*/}
-                                     {/*alt="boovie_img"/>*/}
                                 <img className="logo" src={boovie_logo_new}
                                      alt="boovie_img"/>
                             </div>
@@ -124,6 +122,14 @@ class Welcome extends Component {
                         <span className="heart-icon"><IoMdHeart/></span>
                         by Boovie team
                     </p>
+                    <a href="https://tikonazaryan91.github.io/team/"
+                       target="_blank" className="link_to_booviepage">
+                    <p className="footer-center">
+                        <span className="heart-icon team_page">
+                            Boovie team page
+                        </span>
+                    </p>
+                    </a>
                 </div>
             </div>
         );
