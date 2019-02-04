@@ -10,6 +10,7 @@ import './App.css';
 import { connectToUser } from './context/UserContext';
 import book from "./gifs/book.gif"
 import OtherUserComponent from "./Components/OtherUserComponent/OtherUserComponent";
+import {askForPermissioToReceiveNotifications} from "./push-notification";
 
 class App extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class App extends Component {
 
     componentDidMount() {
         this.authListener();
+        askForPermissioToReceiveNotifications();
     }
 
     authListener() {

@@ -23,7 +23,7 @@ class SignIn extends Component {
                 this.props.history.push("/feed");
             })
             .catch(error => {
-                console.log(error);
+                alert(error);
             });
     };
 
@@ -85,7 +85,6 @@ class SignIn extends Component {
                                     <button
                                         type="submit"
                                         className="signin_formfield_button"
-                                        // value="SignIn"
                                         onClick={this.login}>
                                         Sign In
                                     </button>

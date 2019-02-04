@@ -7,7 +7,6 @@ import film from "../../gifs/film.gif";
 
 
 const url = "https://api.themoviedb.org/3/movie/";
-// const img_url = "http://image.tmdb.org/t/p/";
 const api_key = "bb02a460de04ad1eb828328b58cab6bf";
 
 class Movies extends Component {
@@ -35,7 +34,7 @@ class Movies extends Component {
         }).then(res => res.json()).then(json => {
             this.setState({
                 movies: json.results,
-                isLoading: false
+                isLoading: false,
             });
         });
     };
@@ -57,6 +56,7 @@ class Movies extends Component {
 
 
     render() {
+        console.log(this.state.movies);
         if (this.state.isLoading) {
             return (<img src={film} alt="thereisagif" className="loader"/>);
         } else {
