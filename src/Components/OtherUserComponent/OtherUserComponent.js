@@ -20,7 +20,9 @@ class OtherUserProfile extends Component {
         super(props);
         this.state = {
             user: null,
-            followingsCount: 0
+            followingsCount: 0,
+            showBooks: false,
+            showMovies: false
         }
     }
 
@@ -66,10 +68,22 @@ class OtherUserProfile extends Component {
         fire.auth().signOut()
     };
 
+    toggleBooks = (e) => {
+        this.setState(state => ({showBooks: !state.showBooks}));
+    };
+
+    toggleMovies = (e) => {
+        this.setState(state => ({showMovies: !state.showMovies}));
+    };
+
     render() {
         const {user} = this.state;
         const moviesCount = user && user.movies ? Object.keys(user.movies).length : 0;
         const booksCount = user && user.books ? Object.keys(user.books).length : 0;
+        const moviesObj = user && user.movies ? Object.values(user.movies) : 0;
+        const booksObj = user && user.books ? Object.values(user.books): 0;
+        console.log(user);
+
         return user ? (
             <div className="all_profile" style={backgroundStyle}>
                 <div className="all_profile_sections">
@@ -106,11 +120,11 @@ class OtherUserProfile extends Component {
                                 </div>
                                 <div className="other_names_username">
                                     <p className="other_full_name_profile">
-                                        <span>{user.fullname}</span>
+                                        <span>{user ? user.fullname : null}</span>
                                     </p>
                                 </div>
                                 <div className="other_username_profile">
-                                    <p>{user.username}</p>
+                                    <p>{user ? user.username : null}</p>
                                 </div>
                                 <div className="otheruser_following_follower">
                                     <div className="following">
@@ -118,7 +132,7 @@ class OtherUserProfile extends Component {
                                             Following
                                         </p>
                                         <p>
-                                            {this.state.followingsCount?this.state.followingsCount:0}
+                                            {this.state.followingsCount ? this.state.followingsCount : 0}
                                         </p>
                                     </div>
                                     <div className="followers">
@@ -127,7 +141,7 @@ class OtherUserProfile extends Component {
                                         </p>
                                         <p>
                                             {
-                                                user.followers
+                                                user && user.followers
                                                     ? Object.keys(user.followers).length
                                                     : 0
                                             }
@@ -138,11 +152,11 @@ class OtherUserProfile extends Component {
                         </div>
                         <div className="books_movies_lists">
                             <div className="all_list">
-                                <div>
+                                <div onClick={this.toggleBooks} style={{cursor: "pointer"}}>
                                     <p>Books</p>
                                     <p>{booksCount}</p>
                                 </div>
-                                <div>
+                                <div onClick={this.toggleMovies} style={{cursor: "pointer"}}>
                                     <p>Movies</p>
                                     <p>{moviesCount}</p>
                                 </div>
@@ -150,10 +164,10 @@ class OtherUserProfile extends Component {
                         </div>
                         <div className="movie_lover">
                             <div className="movie_lover_paragraph">
-                                <p>{user.fullname} is a
+                                <p>{user ? user.fullname : null} is a
                                     {(moviesCount === booksCount) ?
                                         " movie and book" : moviesCount > booksCount ? " movie" : " book"
-                                    } lover</p>
+                                    } lover.</p>
                             </div>
                             <div className="movie_lover_img">
                                 <img src={otheruserbookimg} alt="exampleimage"/>
@@ -161,9 +175,159 @@ class OtherUserProfile extends Component {
                         </div>
                     </div>
                 </div>
+                {
+                    this.state.showBooks && Object.keys(user.books).length > 0 ? (
+
+                        <div className="backdrop" onClick={this.toggleBooks}>
+                            <div className="modal">
+                                {
+                                    booksObj.map((book,key) => (
+                                        <div key={key} style={{marginBottom: 10}}>
+                                            <h2>{book.title}</h2>
+                                            <div style={{display: "flex"}}>
+                                                <img
+                                                    style={{maxHeight: "fit-content"}}
+                                                    alt={book.title}
+                                                    src={book.images.volumeInfo.imageLinks.thumbnail}
+                                                />
+                                                <p style={{padding: "0 10px"}}>
+                                                    {book.images.volumeInfo.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    ) : this.state.showMovies && Object.keys(user.movies).length > 0 ? (
+                        <div className="backdrop" onClick={this.toggleMovies}>
+                            <div className="modal">
+                                {
+                                    moviesObj.map((movie,key) => (
+                                        <div key={key} style={{marginBottom: 10}}>
+                                            <h2>{movie.title}</h2>
+                                            <div style={{display: "flex"}}>
+                                                <img
+                                                    style={{maxHeight: "fit-content", width: 150, height: 150}}
+                                                    src={`http://image.tmdb.org/t/p/w500/${movie.images}`}
+                                                />
+                                                <p style={{padding: "0 10px"}}>
+                                                    {movie.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    ) : null
+                }
             </div>
         ) : null
     }
 }
 
 export default connectToUser(OtherUserProfile);
+
+
+// render() {
+//     const {user} = this.state;
+//     const moviesCount = user && user.movies ? Object.keys(user.movies).length : 0;
+//     const booksCount = user && user.books ? Object.keys(user.books).length : 0;
+//     return user ? (
+//         <div className="all_profile" style={backgroundStyle}>
+//             <div className="all_profile_sections">
+//                 <div className="header">
+//                     <div className="topnav">
+//                         <div className="topnav_logo">
+//                             <img src={my_profile_boovie_logo} alt="logoImg"/>
+//                         </div>
+//                         <div className="topnav_input"/>
+//                         <div className="navs">
+//                             <div className="navs_feed">
+//                                 <Link to="/Feed">
+//                                     <p className="navs_feed_paragraph">Feed</p>
+//                                 </Link>
+//                             </div>
+//                             <div className="navs_btn">
+//                                 <button className="logout" onClick={this.logout}>
+//                                     Log Out
+//                                 </button>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>
+//                 <div className="main_section">
+//                     <div className="user-profile">
+//                         <div className="main_info">
+//                             <div className="img_btn">
+//                                 <img className="avatar"
+//                                      src="https://sun1-4.userapi.com/c7001/v7001120/19261/2I6tX-7H8WU.jpg"
+//                                      alt="Avatar"/>
+//                             </div>
+//                             <div className="main_info_inpic">
+//                                 <button className="inpic">Follow</button>
+//                             </div>
+//                             <div className="other_names_username">
+//                                 <p className="other_full_name_profile">
+//                                     <span>{user.fullname}</span>
+//                                 </p>
+//                             </div>
+//                             <div className="other_username_profile">
+//                                 <p>{user.username}</p>
+//                             </div>
+//                             <div className="otheruser_following_follower">
+//                                 <div className="following">
+//                                     <p>
+//                                         Following
+//                                     </p>
+//                                     <p>
+//                                         {this.state.followingsCount?this.state.followingsCount:0}
+//                                     </p>
+//                                 </div>
+//                                 <div className="followers">
+//                                     <p>
+//                                         Followers
+//                                     </p>
+//                                     <p>
+//                                         {
+//                                             user.followers
+//                                                 ? Object.keys(user.followers).length
+//                                                 : 0
+//                                         }
+//                                     </p>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <div className="books_movies_lists">
+//                         <div className="all_list">
+//                             <div>
+//                                 <p>Books</p>
+//                                 <p>{booksCount}</p>
+//                             </div>
+//                             <div>
+//                                 <p>Movies</p>
+//                                 <p>{moviesCount}</p>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <div className="movie_lover">
+//                         <div className="movie_lover_paragraph">
+//                             <p>{user.fullname} is a
+//                                 {(moviesCount === booksCount) ?
+//                                     " movie and book" : moviesCount > booksCount ? " movie" : " book"
+//                                 } lover.</p>
+//                         </div>
+//                         <div className="movie_lover_img">
+//                             <img src={otheruserbookimg} alt="exampleimage"/>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     ) : null
+// }
+// }
+//
+// export default connectToUser(OtherUserProfile);

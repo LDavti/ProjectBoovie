@@ -112,7 +112,7 @@ class MyProfile extends Component {
     };
 
     render() {
-        console.log(this.state.movies);
+        // console.log(this.state.movies);
         return (
             <div className="all_profile" style={backgroundStyle}>
                 <div className="all_profile_sections">
@@ -172,7 +172,8 @@ class MyProfile extends Component {
                                             {
                                                 this.props.user.followers
                                                 ? Object.keys(this.props.user.followers).length
-                                                : 0 }
+                                                : 0
+                                            }
                                         </p>
                                     </div>
                                 </div>

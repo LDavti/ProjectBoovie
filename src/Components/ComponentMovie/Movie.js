@@ -21,7 +21,7 @@ class Movie extends Component {
 
     render() {
         const {movie} = this.props;
-        console.log(movie);
+        // console.log(movie);
         return (
             <div className="all_movie_style">
                 <div
