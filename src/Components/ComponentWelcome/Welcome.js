@@ -26,29 +26,33 @@ class Welcome extends Component {
                                 <img className="logo" src={boovie_logo_new}
                                      alt="boovie_img"/>
                             </div>
-                            <p>
-                                Boovie is a simple and fun way to discover great
-                                movies and books based on reviews from people you trust.
-                                You can save books and movies to your list,
-                                share your favorite ones with friends,and keep track of
-                                what others are watching and reading.
-                            </p>
-                            <p className="text">
-                                First time on Boovie or already have an account?
-                                Hurry up to join us
-                            </p>
-                        </div>
-                        <div className="btn ">
-                            <Link to="/signin">
-                                <button className="btn_login buttons">
-                                    Sign In
-                                </button>
-                            </Link>
-                            <Link to="/signup">
-                                <button className="btn_signup buttons">
-                                    Sign Up
-                                </button>
-                            </Link>
+                            <div className="boovie_text_width">
+                                <p>
+                                    Boovie is a simple and fun way to discover great
+                                    movies and books based on reviews from people you trust.
+                                    You can save books and movies to your list,
+                                    share your favorite ones with friends,and keep track of
+                                    what others are watching and reading.
+                                </p>
+                            </div>
+                            <div>
+                                <p className="text">
+                                    First time on Boovie or already have an account?
+                                    Hurry up to join us
+                                </p>
+                            </div>
+                            <div className="btn ">
+                                <Link to="/signin">
+                                    <button className="btn_login buttons">
+                                        Sign In
+                                    </button>
+                                </Link>
+                                <Link to="/signup">
+                                    <button className="btn_signup buttons">
+                                        Sign Up
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

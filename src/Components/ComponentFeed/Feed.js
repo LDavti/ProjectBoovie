@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import fire from "../../config/Fire";
+import {IoMdHeart} from "react-icons/io";
 import PageTabs from "../ComponentPageTabs/PageTabs";
 import feed_logo from '../../feedimages/feed_logo.png';
 import "./Feed.css";
@@ -62,6 +63,25 @@ class Feed extends Component {
                         </div>
                         <div className="section_users">
                             <Users/>
+                        </div>
+                    </div>
+                    <div className="feed_footer">
+                        <div>
+                            <p className="feed_footer-center">
+                                {"\u00A9"} 2019 Made with
+                                <span className="heart-icon"><IoMdHeart/></span>
+                                by Boovie team
+                            </p>
+                        </div>
+                        <div>
+                            <a href="https://tikonazaryan91.github.io/team/"
+                               target="_blank" className="feed_link_to_booviepage">
+                                <p className="feed_footer-center">
+                                   <span className="heart-icon feed_team_page">
+                                    Boovie team page
+                                   </span>
+                                </p>
+                            </a>
                         </div>
                     </div>
                 </div>

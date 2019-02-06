@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import './MyProfile.css';
 import {Link} from "react-router-dom";
-import myprofilebackimg from "../../myprofileimages/myprofilebackimg.png";
+import background from "../../myprofileimages/background.png";
 import my_profile_boovie_logo from "../../myprofileimages/my_profile_boovie_logo.png";
 import exampleimg from "../../myprofileimages/exampleimg.png";
+import examplebookimg from "../../myprofileimages/examplebookimg.png";
 import fire from "../../config/Fire";
+import feed_logo from '../../feedimages/feed_logo.png';
 import {connectToUser} from '../../context/UserContext';
 
 const backgroundStyle = {
     width: "100%",
     height: "100vh",
-    backgroundImage: `url(${myprofilebackimg})`,
+    backgroundImage: `url(${background})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
 };
@@ -34,19 +36,19 @@ class MyProfile extends Component {
         this.moviesRef.on("value", this.onMoviesLoaded);
 
         this.booksRef = fire.database().ref(`user/${user.uid}/books`);
-        this.booksRef.on("value",this.onBooksLoaded);
+        this.booksRef.on("value", this.onBooksLoaded);
 
         this.ref = fire.database().ref(`user/`);
         this.ref.on("value", this.onUsersLoaded);
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.moviesRef.off("value", this.onMoviesLoaded);
         this.booksRef.off("value", this.onBooksLoaded);
         this.ref.off("value", this.onUsersLoaded);
     }
 
-    onMoviesLoaded = (snapshot)=>{
+    onMoviesLoaded = (snapshot) => {
         const movies = snapshot.val();
         // console.log(movies);
         const moviesArray = [];
@@ -64,7 +66,7 @@ class MyProfile extends Component {
         });
     };
 
-    onBooksLoaded = (snapshot)=>{
+    onBooksLoaded = (snapshot) => {
         const books = snapshot.val();
         const booksArray = [];
 
@@ -86,10 +88,10 @@ class MyProfile extends Component {
         const that = this;
         Object.keys(allUsers).forEach(key1 => {
             const user = allUsers[key1];
-            if(user.followers){
+            if (user.followers) {
                 Object.keys(user.followers).forEach(key2 => {
                     const follower = user.followers[key2];
-                    if(follower.followerId === that.props.user.uid){
+                    if (follower.followerId === that.props.user.uid) {
                         followingsCount++;
                     }
                 });
@@ -171,8 +173,8 @@ class MyProfile extends Component {
                                         <p>
                                             {
                                                 this.props.user.followers
-                                                ? Object.keys(this.props.user.followers).length
-                                                : 0
+                                                    ? Object.keys(this.props.user.followers).length
+                                                    : 0
                                             }
                                         </p>
                                     </div>
@@ -193,14 +195,16 @@ class MyProfile extends Component {
                         </div>
                         <div className="movie_lover">
                             <div className="movie_lover_paragraph">
-                                <p>You are a
+                                <p>I am a
                                     {(this.state.movies.length === this.state.books.length) ?
                                         " movie and book" : this.state.movies.length > this.state.books.length ? " movie" : " book"
                                     } lover</p>
                             </div>
                             <div className="movie_lover_img">
-                                <img src={exampleimg} alt="exampleimage"/>
-                            </div>
+                                {(this.state.movies.length > this.state.books.length) ?
+                                    <img src={exampleimg} alt="exampleimage"/> : <img src={examplebookimg} alt="examplebookimage"/>
+                                }
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -208,6 +212,20 @@ class MyProfile extends Component {
                     this.state.showBooks && this.state.books.length > 0 ? (
                         <div className="backdrop" onClick={this.toggleBooks}>
                             <div className="modal">
+                                <div className="modal_header">
+                                    <div className="modal_topnav">
+                                        <div className="modal_topnav_logo">
+                                            <img src={feed_logo} alt="logoImg"/>
+                                        </div>
+                                        <div className="modal_navs">
+                                            <div className="modal_navs_feed">
+                                                <Link to="/feed">
+                                                    <p className="modal_navs_feed_paragraph">Feed</p>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 {
                                     this.state.books.map(book => (
                                         <div key={book.fireId} style={{marginBottom: 10}}>
@@ -230,13 +248,27 @@ class MyProfile extends Component {
                     ) : this.state.showMovies && this.state.movies.length > 0 ? (
                         <div className="backdrop" onClick={this.toggleMovies}>
                             <div className="modal">
+                                <div className="modal_header">
+                                    <div className="modal_topnav">
+                                        <div className="modal_topnav_logo">
+                                            <img src={feed_logo} alt="logoImg"/>
+                                        </div>
+                                        <div className="modal_navs">
+                                            <div className="modal_navs_feed">
+                                                <Link to="/feed">
+                                                    <p className="modal_navs_feed_paragraph">Feed</p>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 {
                                     this.state.movies.map(movie => (
                                         <div key={movie.fireId} style={{marginBottom: 10}}>
                                             <h2>{movie.title}</h2>
                                             <div style={{display: "flex"}}>
                                                 <img
-                                                    style={{maxHeight: "fit-content",width:150,height:150}}
+                                                    style={{maxHeight: "fit-content", width: 150, height: 150}}
                                                     src={`http://image.tmdb.org/t/p/w500/${movie.images}`}
                                                 />
                                                 <p style={{padding: "0 10px"}}>

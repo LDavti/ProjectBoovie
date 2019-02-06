@@ -138,16 +138,16 @@
 }
 
 .formfield_button {
-    margin-top: 20px;
     background-color: #6699ff;
     color: white;
     border: none;
     outline: none;
-    border-radius: 25px;
-    padding: 15px 70px;
-    font-size: 1.4em;
-    transition-duration: 0.4s;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
+    width: 130px;
+    height: 50px;
 
 }
 
