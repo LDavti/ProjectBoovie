@@ -19,7 +19,7 @@ class App extends Component {
 
     componentDidMount() {
         this.authListener();
-        askForPermissioToReceiveNotifications();
+     askForPermissioToReceiveNotifications();
     }
 
     authListener() {
