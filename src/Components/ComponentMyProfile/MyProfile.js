@@ -141,11 +141,10 @@ class MyProfile extends Component {
                             <div className="main_info">
                                 <div className="img_btn">
                                     <img className="avatar"
-                                         src="https://sun1-4.userapi.com/c7001/v7001120/19261/2I6tX-7H8WU.jpg"
+                                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEX/mcu11yNcAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII="
                                          alt="Avatar"/>
                                 </div>
                                 <div className="main_info_inpic">
-                                    <button className="inpic">+</button>
                                 </div>
                                 <div className="names_username">
                                     <p className="full_name_profile">
@@ -192,7 +191,7 @@ class MyProfile extends Component {
                         </div>
                         <div className="movie_lover">
                             <div className="movie_lover_paragraph">
-                                <p>You are a
+                                <p>You are a <br/>
                                     {(this.state.movies.length === this.state.books.length) ?
                                         " movie and book" : this.state.movies.length > this.state.books.length ? " movie" : " book"
                                     } lover</p>
