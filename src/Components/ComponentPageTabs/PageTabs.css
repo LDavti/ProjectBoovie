@@ -23,3 +23,16 @@
     background-color: #ffffff;
     color: #6699ff;
 }
+.gradient
+{
+background: linear-gradient(269deg, #fbfbfc, #e6f0fd, #d7e4fc, #bcd6f8);
+background-size:cover;
+animation-name: Animation; 
+animation-duration: 4s  ;
+}
+
+ @keyframes Animation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+ }
