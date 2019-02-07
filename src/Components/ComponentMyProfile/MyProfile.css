@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 .all_profile_sections {
     width: 100%;
     height: 100%;
@@ -96,7 +96,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #6699ff;
+    background-color: #483192;
     color: white;
     border: none;
     outline: none;
@@ -239,7 +239,7 @@
     align-items: right;
     border: 1px solid #081d44;
     border-radius: 12px;
-    background-color: #6699ff;
+    background-color:#9795f0;
     display: flex;
     justify-content:space-around;
     position: absolute;
@@ -279,7 +279,7 @@
 
 .movie_lover .movie_lover_paragraph p{
     color: #081d44;
-    font-family: 'Actor', sans-serif;
+    font-family: 'Kalam', cursive;
     font-size: 35px;
     font-weight: bold;
     text-align: center;
@@ -316,3 +316,58 @@
     overflow: auto;
     padding: 5px;
 }
+::-webkit-scrollbar {
+    width: .5rem;
+ }
+ 
+ ::-webkit-scrollbar-track {
+    background: #888;
+    height: 50%;
+ }
+ 
+ ::-webkit-scrollbar-thumb {
+    background:aquamarine;
+    border-radius: 5%;
+    height: 50%;
+ }
+ 
+ ::-webkit-scrollbar-thumb:hover {
+    background: #9795f0;
+ }
+
+ @media screen and (max-width : 500px) {
+     .header{
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    
+     .topnav{
+      margin: auto;
+      margin-top: 1em;
+      margin-bottom: 0;
+      
+    }
+    
+    .navs {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 0.5em;
+    }
+    .navs_btn .logout {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 0.5em;
+      }
+      
+    .navs a {
+      margin: -1em;
+    }
+    
+    .topnav_logo {
+        margin: auto;
+        margin-top: 1em;
+        margin-bottom: 0;
+    }}
