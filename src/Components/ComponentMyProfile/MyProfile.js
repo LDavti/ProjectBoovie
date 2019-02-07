@@ -13,6 +13,7 @@ const backgroundStyle = {
     backgroundImage: `url(${myprofilebackimg})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
+    isLoaded : false
 };
 
 class MyProfile extends Component {
@@ -23,7 +24,9 @@ class MyProfile extends Component {
             books: [],
             followingsCount: 0,
             showBooks: false,
-            showMovies: false
+            showMovies: false,
+            name : '',
+            arr : []
         }
     }
 
@@ -38,6 +41,8 @@ class MyProfile extends Component {
 
         this.ref = fire.database().ref(`user/`);
         this.ref.on("value", this.onUsersLoaded);
+
+        this.setState({isLoaded : true})
     }
 
     componentWillUnmount(){
@@ -110,9 +115,27 @@ class MyProfile extends Component {
     toggleMovies = (e) => {
         this.setState(state => ({showMovies: !state.showMovies}));
     };
+    handleChange = (e) => {
 
+        //const target = e.target;
+        const value = e.target.value;
+        const name = e.target.name;
+        this.setState({
+            [name]: value
+        });
+        fire.database().ref('user/').orderByChild('username').startAt(value).on('child_added', snap=>{
+            let snapshot = []
+             snapshot.push(snap.val().username)
+            
+            this.setState({
+                arr : snapshot
+            })
+            console.log(snap.val())
+        })
+    };
     render() {
         console.log(this.state.movies);
+        
         return (
             <div className="all_profile" style={backgroundStyle}>
                 <div className="all_profile_sections">
@@ -141,11 +164,10 @@ class MyProfile extends Component {
                             <div className="main_info">
                                 <div className="img_btn">
                                     <img className="avatar"
-                                         src="https://sun1-4.userapi.com/c7001/v7001120/19261/2I6tX-7H8WU.jpg"
+                                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEX/mcu11yNcAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII="
                                          alt="Avatar"/>
                                 </div>
                                 <div className="main_info_inpic">
-                                    <button className="inpic">+</button>
                                 </div>
                                 <div className="names_username">
                                     <p className="full_name_profile">
@@ -168,6 +190,9 @@ class MyProfile extends Component {
                                         <p>
                                             Followers
                                         </p>
+                                        <input type="text"  name = "name" value={this.state.name}
+                                           onChange={this.handleChange} />
+                                           <div>{this.state.arr}</div>
                                         <p>
                                             {
                                                 this.props.user.followers
@@ -192,7 +217,7 @@ class MyProfile extends Component {
                         </div>
                         <div className="movie_lover">
                             <div className="movie_lover_paragraph">
-                                <p>You are a
+                                <p>You are a <br/>
                                     {(this.state.movies.length === this.state.books.length) ?
                                         " movie and book" : this.state.movies.length > this.state.books.length ? " movie" : " book"
                                     } lover</p>
@@ -255,4 +280,3 @@ class MyProfile extends Component {
 }
 
 export default connectToUser(MyProfile);
-

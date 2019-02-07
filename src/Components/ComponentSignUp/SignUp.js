@@ -17,6 +17,8 @@ class SignUp extends Component {
             username: "",
             hasAgreed: false,
             human: true,
+            errorMessageUsername : '',
+            errorMessageEmail : ''
         };
     }
 
@@ -25,16 +27,20 @@ class SignUp extends Component {
         fire.database().ref("/user/").orderByChild("username").equalTo(this.state.username).once("value", snapshot => {
             const user = snapshot.val();
             if (user) {
-                alert(`User with ${this.state.username} username already exists`);
+               // alert(`User with ${this.state.username} username already exists`);
+               this.setState({errorMessageUsername : `User with ${this.state.username} username already exists`})
             } else {
+                
                 fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(user => {
                     fire.database().ref('user/' + user.user.uid).set({
                         fullname: this.state.name,
                         username: this.state.username
                     })
                 }).catch(error => {
-                    alert(error);
+                   // alert(error);
+                    this.setState({errorMessageEmail : "This e-mail is already in use"})
                 });
+                
             }
         })
 
@@ -47,7 +53,8 @@ class SignUp extends Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         this.setState({
-            [name]: value
+            [name]: value,
+            errorMessageUsername : ''
         });
 
     };
@@ -70,7 +77,7 @@ class SignUp extends Component {
     };
 
     errorOfUsername = () => {
-
+        
         let {username} = this.state;
         let pattern = /^@[a-zA-Z0-9._]*$/
         if (username.slice(0, 1) !== "@") {
@@ -142,7 +149,6 @@ class SignUp extends Component {
                                     <input type="text" className="form_field_input" name="name" id="fullname"
                                            placeholder="Enter your full name"
                                            value={this.state.name}
-
                                            onChange={this.handleChange}/>
                                     {this.errorOfFullname()}
                                 </div>
@@ -153,6 +159,7 @@ class SignUp extends Component {
                                            value={this.state.username}
                                            onChange={this.handleChange}/>
                                     {this.errorOfUsername()}
+                                    <div className="Error_fields">{this.state.errorMessageUsername}</div>
                                 </div>
                                 <div className="form_field">
                                     <label className="form_field_label" htmlFor="E-mail address">E-mail Address</label>
@@ -161,6 +168,7 @@ class SignUp extends Component {
                                            value={this.state.email}
                                            onChange={this.handleChange}/>
                                     {this.errorOfEmail()}
+                                    <div className="Error_fields">{this.state.errorMessageEmail}</div>
                                 </div>
                                 <div className="form_field">
                                     <label className="form_field_label" htmlFor="Password">Password</label>
@@ -213,6 +221,7 @@ class SignUp extends Component {
                                             onClick={this.signup}
                                     > Sign Up
                                     </button>
+                                    
                                 </div>
                             </form>
                         </div>

@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import './SignIn.css';
 import sigin from "../../signinimages/sigin.png";
 import fire from "../../config/Fire";
+//import '../ComponentSignUp/SignUp.css'
 
 
 class SignIn extends Component {
@@ -11,6 +12,8 @@ class SignIn extends Component {
         this.state = {
             email: "",
             password: "",
+            incorEmail: "",
+            incorPass: ""
         };
     }
 
@@ -23,7 +26,8 @@ class SignIn extends Component {
                 this.props.history.push("/feed");
             })
             .catch(error => {
-                alert(error);
+               this.setState({incorEmail : error.message, incorPass : error.message
+            })
             });
     };
 
@@ -50,6 +54,7 @@ class SignIn extends Component {
                                     <span>Sign Up</span>
                                 </Link>
                             </div>
+                            <div className="Error_fields" style = {{paddingTop : "10px"}} >{this.state.incorEmail}</div>
                         </div>
                         <div className="form_all_signin" onClick={e => e.stopPropagation()}>
                             <form className="signin_form_fields">
@@ -57,6 +62,7 @@ class SignIn extends Component {
                                     <label className="signin_form_field_label"
                                            htmlFor="email">
                                         E-mail
+                                        
                                     </label>
                                     <input type="email"
                                            name="email"
@@ -65,12 +71,14 @@ class SignIn extends Component {
                                            placeholder="Enter your e-mail"
                                            value={this.state.email}
                                            onChange={this.handleChange}
+                                           autoComplete = "off"
                                     />
                                 </div>
                                 <div className="signin_form_field">
                                     <label className="signin_form_field_label"
                                            htmlFor="password">
                                         Password
+                                        
                                     </label>
                                     <input type="password"
                                            className="signin_form_field_input"
