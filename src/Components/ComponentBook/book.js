@@ -29,9 +29,16 @@ class Book extends Component {
                         className="book_poster"
                         onClick={this.handeleClick}
                     />
-                    <p className="book_paragraph">
-                        {book.volumeInfo.title}
-                    </p>
+                    <div className="add-btn">
+                        <p className="book_paragraph">
+                            {book.volumeInfo.title}
+                        </p>
+                        <button className="add_movie"
+                                onClick={this.handeleClick}>
+                            Add
+                        </button>
+                    </div>
+
                 </div>
             </div>
         )

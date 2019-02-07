@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import './SignIn.css';
 import sigin from "../../signinimages/sigin.png";
 import fire from "../../config/Fire";
+import film from "../../gifs/film.gif";
 
 
 class SignIn extends Component {
@@ -11,6 +12,7 @@ class SignIn extends Component {
         this.state = {
             email: "",
             password: "",
+            incorEmail: "",
         };
     }
 
@@ -23,7 +25,10 @@ class SignIn extends Component {
                 this.props.history.push("/feed");
             })
             .catch(error => {
-                alert(error);
+                this.setState({
+                    incorEmail: error.message,
+                    incorPass: error.message,
+                });
             });
     };
 
@@ -33,6 +38,7 @@ class SignIn extends Component {
     };
 
     render() {
+
         return (
             <div className="all_signin">
                 <div className="first_img">
@@ -49,10 +55,12 @@ class SignIn extends Component {
                                 <Link to="/signup" className="go_to_signup">
                                     <span>Sign Up</span>
                                 </Link>
+                                <div className="Error_fields"
+                                     style={{paddingTop: "10px"}}>{this.state.incorEmail}</div>
                             </div>
                         </div>
                         <div className="form_all_signin" onClick={e => e.stopPropagation()}>
-                            <form className="signin_form_fields">
+                            <form className="signin_form_fields" autoComplete="off">
                                 <div className="signin_form_field">
                                     <label className="signin_form_field_label"
                                            htmlFor="email">
@@ -97,5 +105,6 @@ class SignIn extends Component {
         );
     }
 }
+
 
 export default SignIn;

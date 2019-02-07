@@ -10,16 +10,18 @@
 
 .book_style {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    height: 170px;
 }
 
 .book_style .book_poster {
-    width: 160px;
-    height: 100px;
+    width: 210px;
+    height: 120px;
     object-fit: cover;
     margin: 0 10px;
+    cursor: pointer;
 }
 
 .book_style .book_paragraph {

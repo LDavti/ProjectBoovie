@@ -21,7 +21,7 @@ class Movie extends Component {
 
     render() {
         const {movie} = this.props;
-        console.log(movie);
+        // console.log(movie);
         return (
             <div className="all_movie_style">
                 <div
@@ -32,11 +32,17 @@ class Movie extends Component {
                         src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                         className="movie_poster"
                         id="movie_poster"
-                        onClick={this.handeleClick}
+
                     />
-                    <p className="movie_paragraph">
-                        {movie.title}
-                    </p>
+                    <div className="add-btn">
+                        <p className="movie_paragraph">
+                            {movie.title}
+                        </p>
+                        <button className="add_movie"
+                                onClick={this.handeleClick}>
+                            Add
+                        </button>
+                    </div>
                 </div>
             </div>
         )

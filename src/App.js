@@ -8,7 +8,7 @@ import MyProfile from "./Components/ComponentMyProfile/MyProfile";
 import Feed from "./Components/ComponentFeed/Feed";
 import './App.css';
 import { connectToUser } from './context/UserContext';
-import book from "./gifs/book.gif"
+import new_loadin from "./gifs/new_loadin.gif";
 import OtherUserComponent from "./Components/OtherUserComponent/OtherUserComponent";
 import {askForPermissioToReceiveNotifications} from "./push-notification";
 
@@ -40,7 +40,7 @@ class App extends Component {
 
     render() {
         if (!this.props.userIsLoaded) {
-            return (<img src={book} alt="thereisagif" className="loader"/>);
+            return (<img src={new_loadin} alt="thereisagif" className="loader"/>);
         } else {
             return (
                 <div>

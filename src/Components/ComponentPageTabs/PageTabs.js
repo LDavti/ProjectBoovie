@@ -17,7 +17,7 @@ class PageTabs extends Component {
     render() {
         const {activeTab} = this.state;
         return (
-            <div style={{padding: 10}}>
+            <div style={{padding: 10}} >
                 <div className="tabs">
                     <div onClick={this.setActiveTab} id="movies" className={activeTab === "movies" ? "active" : ""}>Movies</div>
                     <div onClick={this.setActiveTab} id="books" className={activeTab === "books" ? "active" : ""}>Books</div>

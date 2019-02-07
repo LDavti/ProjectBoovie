@@ -7,14 +7,14 @@
 .all_users_list {
     width: 100%;
     padding: 5px 0;
-    height: 90vh;
+    /*height: 90vh;*/
 }
 
 .who_follow {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
 }
 
 .who_follow p {
@@ -36,8 +36,9 @@
     color: #081d44;
     font-family: 'Actor', sans-serif;
     font-size: 30px;
-    height: 80vh;
-    overflow: scroll;
+    height: 113vh;
+    overflow-y: scroll;
+    padding: 10px;
 }
 
 .about_users a {
@@ -58,27 +59,38 @@
 
 .fullname_username_all {
     display: flex;
-    flex-direction: column;
-    width: 70%;
+    /*flex-direction: column;*/
+    width: 100%;
+    justify-content: space-between;
 }
 
 .btn_follow {
     display: flex;
-    width: 100%;
+    /*width: 100%;*/
     justify-content: space-between;
 }
 
 .inner_fullname {
     color: #081d44;
     font-family: 'Actor', sans-serif;
-    font-size: 30px;
+    font-size: 22px;
     font-weight: bold;
+    text-align: center;
 }
 
 .inner_username {
     color: #081d44;
     font-family: 'Actor', sans-serif;
-    font-size: 30px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.inner_fullname_username {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
 }
 
 .btn_user_follow {
@@ -88,6 +100,7 @@
     border: none;
     border-radius: 9px;
     width: 92px;
+    height: 45px;
     font-size: 17px;
     text-transform: capitalize;
 }
@@ -98,4 +111,48 @@
 
 .btn_user_follow:focus {
     outline: 0;
+}
+
+.line_gradient {
+    background: linear-gradient(269deg, #fbfbfc, #e6f0fd,#d7e4fc);
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 4s ease infinite;
+    -moz-animation: AnimationName 4s ease infinite;
+    animation: AnimationName 4s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0% {
+        background-position: 0 50%
+    }
+    50% {
+        background-position: 100% 51%
+    }
+    100% {
+        background-position: 0 50%
+    }
+}
+
+@-moz-keyframes AnimationName {
+    0% {
+        background-position: 0 50%
+    }
+    50% {
+        background-position: 100% 51%
+    }
+    100% {
+        background-position: 0 50%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 0 50%
+    }
+    50% {
+        background-position: 100% 51%
+    }
+    100% {
+        background-position: 0 50%
+    }
 }
