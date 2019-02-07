@@ -74,7 +74,7 @@ class Feed extends Component {
                             </p>
                         </div>
                         <div>
-                            <a href="https://tikonazaryan91.github.io/team/"
+                            <a href="https://tikonazaryan91.github.io/ourpage/"
                                target="_blank" className="feed_link_to_booviepage">
                                 <p className="feed_footer-center">
                                    <span className="heart-icon feed_team_page">

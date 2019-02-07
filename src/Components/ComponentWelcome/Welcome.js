@@ -126,7 +126,7 @@ class Welcome extends Component {
                         <span className="heart-icon"><IoMdHeart/></span>
                         by Boovie team
                     </p>
-                    <a href="https://tikonazaryan91.github.io/team/"
+                    <a href="https://tikonazaryan91.github.io/ourpage/"
                        target="_blank" className="link_to_booviepage">
                     <p className="footer-center">
                         <span className="heart-icon team_page">
