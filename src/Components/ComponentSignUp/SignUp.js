@@ -31,16 +31,19 @@ class SignUp extends Component {
                 // alert(`User with ${this.state.username} username already exists`);
                 this.setState({errorMessageUsername: `User with ${this.state.username} username already exists`});
             } else {
-                fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(user => {
-                    fire.database().ref('user/' + user.user.uid).set({
-                        fullname: this.state.name,
-                        username: this.state.username
-                    })
-                }).catch(error => {
-                    // alert(error);
-                    this.setState({errorMessageEmail: error.message});
+                if(this.disabledCheckbox()=== false){
+                    fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(user => {
+                        fire.database().ref('user/' + user.user.uid).set({
+                            fullname: this.state.name,
+                            username: this.state.username
+                        })
+                    }).catch(error => {
+                        // alert(error);
+                        this.setState({errorMessageEmail: error.message});
 
-                });
+                    });
+                }
+
             }
         })
 

@@ -14,3 +14,8 @@
     background-color: #6699ff;
     color: white;
 }
+
+.all_pagination{
+    display: flex;
+    justify-content: center;
+}

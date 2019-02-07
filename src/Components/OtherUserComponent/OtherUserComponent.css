@@ -22,7 +22,7 @@
 }
 
 .topnav img {
-    width: 54%;
+    width: 49%;
     height: 50%;
     display: flex;
     justify-content: center;
@@ -255,9 +255,9 @@
     padding-top: 20px;
 }
 @keyframes roller{
-    0%   {top: 0;left:30%}
-    80%  {top: 71%; left:30%;}
-    100%{top:71%;left:30%;}
+    0%   {top: 0;left:30%;opacity: 0.2}
+    80%  {top: 71%; left:30%;opacity: 0.5}
+    100%{top:71%;left:30%; opacity: 1}
 }
 
 /*End of books_movies_lists */
@@ -284,6 +284,7 @@
     font-size: 35px;
     font-weight: bold;
     text-align: center;
+    padding: 5px;
 }
 
 .movie_lover .movie_lover_img{

@@ -31,3 +31,22 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.add-btn{
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+}
+
+.add_movie{
+    background: #081d44;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.add_movie:focus {
+    outline: none;
+}

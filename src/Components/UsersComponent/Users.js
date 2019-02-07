@@ -58,7 +58,7 @@ class Users extends Component {
         // console.log(users);
 
         return (
-            <div className="all_users_list">
+            <div className="all_users_list line_gradient">
                 <div className="who_follow">
                     <p>Who to follow</p>
                 </div>
@@ -67,7 +67,7 @@ class Users extends Component {
                     {
                         users.map(user =>
                             <Link to={`/user/${user.fireId}`} key={user.fireId}>
-                                <div className="user_info_of_users">
+                                <div className="user_info_of_users ">
                                     <div className="for_user_img"/>
                                     <div className="fullname_username_all">
                                         <div className="inner_fullname_username">

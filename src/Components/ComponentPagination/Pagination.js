@@ -28,7 +28,7 @@ class Pagination extends Component {
         });
 
         return (
-            <div>
+            <div className="all_pagination">
                 <ul className="pagination">
                     {renderPageNumbers}
                 </ul>

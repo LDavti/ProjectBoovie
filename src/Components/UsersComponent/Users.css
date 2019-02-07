@@ -14,7 +14,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
 }
 
 .who_follow p {
@@ -111,4 +111,48 @@
 
 .btn_user_follow:focus {
     outline: 0;
+}
+
+.line_gradient {
+    background: linear-gradient(269deg, #fbfbfc, #e6f0fd,#d7e4fc);
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 4s ease infinite;
+    -moz-animation: AnimationName 4s ease infinite;
+    animation: AnimationName 4s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0% {
+        background-position: 0 50%
+    }
+    50% {
+        background-position: 100% 51%
+    }
+    100% {
+        background-position: 0 50%
+    }
+}
+
+@-moz-keyframes AnimationName {
+    0% {
+        background-position: 0 50%
+    }
+    50% {
+        background-position: 100% 51%
+    }
+    100% {
+        background-position: 0 50%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 0 50%
+    }
+    50% {
+        background-position: 100% 51%
+    }
+    100% {
+        background-position: 0 50%
+    }
 }

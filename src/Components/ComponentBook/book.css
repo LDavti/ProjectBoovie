@@ -21,6 +21,7 @@
     height: 120px;
     object-fit: cover;
     margin: 0 10px;
+    cursor: pointer;
 }
 
 .book_style .book_paragraph {
