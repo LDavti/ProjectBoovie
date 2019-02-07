@@ -33,3 +33,43 @@
     justify-content: center;
     align-items: center;
 }
+
+/*Start of Feed Footer section*/
+
+.feed_footer {
+    box-sizing: border-box;
+    background: #081d44;
+    color: white;
+    width: 100%;
+    padding: 20px 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.feed_footer-center {
+    font-family: 'Actor', sans-serif;
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+.feed_team_page {
+    color: white;
+    font-family: 'Actor', sans-serif;
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+.feed_team_page:hover {
+    cursor: pointer;
+    color: #a1c4fd;
+    font-family: 'Actor', sans-serif;
+    font-size: 30px;
+    transition:1s ease-in;
+}
+
+.feed_link_to_booviepage {
+    text-decoration: none;
+}

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import './SignIn.css';
 import sigin from "../../signinimages/sigin.png";
 import fire from "../../config/Fire";
-//import '../ComponentSignUp/SignUp.css'
+import film from "../../gifs/film.gif";
 
 
 class SignIn extends Component {
@@ -13,7 +13,7 @@ class SignIn extends Component {
             email: "",
             password: "",
             incorEmail: "",
-            incorPass: ""
+            isLoading: false,
         };
     }
 
@@ -26,8 +26,12 @@ class SignIn extends Component {
                 this.props.history.push("/feed");
             })
             .catch(error => {
-               this.setState({incorEmail : error.message, incorPass : error.message
-            })
+                // alert(error);
+                this.setState({
+                    incorEmail: error.message,
+                    incorPass: error.message,
+                    isLoading: true
+                });
             });
     };
 
@@ -37,72 +41,74 @@ class SignIn extends Component {
     };
 
     render() {
-        return (
-            <div className="all_signin">
-                <div className="first_img">
-                    <img src={sigin} alt="signinimgpng"/>
-                </div>
-                <div className="signin_form">
-                    <div className="signin_all">
-                        <div className="signin_title">
-                            <h2 className="signin_heading">
-                                Sign In
-                            </h2>
-                            <div className="alter">
-                                First time in Boovie and don't have an account?
-                                <Link to="/signup" className="go_to_signup">
-                                    <span>Sign Up</span>
-                                </Link>
+        if (this.state.isLoading) {
+            return (<img src={film} alt="thereisagif" className="loader"/>);
+        } else {
+            return (
+                <div className="all_signin">
+                    <div className="first_img">
+                        <img src={sigin} alt="signinimgpng"/>
+                    </div>
+                    <div className="signin_form">
+                        <div className="signin_all">
+                            <div className="signin_title">
+                                <h2 className="signin_heading">
+                                    Sign In
+                                </h2>
+                                <div className="alter">
+                                    First time in Boovie and don't have an account?
+                                    <Link to="/signup" className="go_to_signup">
+                                        <span>Sign Up</span>
+                                    </Link>
+                                    <div className="Error_fields"
+                                         style={{paddingTop: "10px"}}>{this.state.incorEmail}</div>
+                                </div>
                             </div>
-                            <div className="Error_fields" style = {{paddingTop : "10px"}} >{this.state.incorEmail}</div>
-                        </div>
-                        <div className="form_all_signin" onClick={e => e.stopPropagation()}>
-                            <form className="signin_form_fields">
-                                <div className="signin_form_field">
-                                    <label className="signin_form_field_label"
-                                           htmlFor="email">
-                                        E-mail
-                                        
-                                    </label>
-                                    <input type="email"
-                                           name="email"
-                                           id="email"
-                                           className="signin_form_field_input"
-                                           placeholder="Enter your e-mail"
-                                           value={this.state.email}
-                                           onChange={this.handleChange}
-                                           autoComplete = "off"
-                                    />
-                                </div>
-                                <div className="signin_form_field">
-                                    <label className="signin_form_field_label"
-                                           htmlFor="password">
-                                        Password
-                                        
-                                    </label>
-                                    <input type="password"
-                                           className="signin_form_field_input"
-                                           placeholder="Enter your password"
-                                           name="password"
-                                           id="password"
-                                           value={this.state.password}
-                                           onChange={this.handleChange}
-                                    />
-                                </div>
-                                <div className="signin_form_field_submit">
-                                    <button
-                                        type="submit"
-                                        className="signin_formfield_button"
-                                        onClick={this.login}>
-                                        Sign In
-                                    </button>
-                                </div>
-                            </form>
+                            <div className="form_all_signin" onClick={e => e.stopPropagation()}>
+                                <form className="signin_form_fields" autoComplete="off">
+                                    <div className="signin_form_field">
+                                        <label className="signin_form_field_label"
+                                               htmlFor="email">
+                                            E-mail
+                                        </label>
+                                        <input type="email"
+                                               name="email"
+                                               id="email"
+                                               className="signin_form_field_input"
+                                               placeholder="Enter your e-mail"
+                                               value={this.state.email}
+                                               onChange={this.handleChange}
+                                        />
+                                    </div>
+                                    <div className="signin_form_field">
+                                        <label className="signin_form_field_label"
+                                               htmlFor="password">
+                                            Password
+                                        </label>
+                                        <input type="password"
+                                               className="signin_form_field_input"
+                                               placeholder="Enter your password"
+                                               name="password"
+                                               id="password"
+                                               value={this.state.password}
+                                               onChange={this.handleChange}
+                                        />
+                                    </div>
+                                    <div className="signin_form_field_submit">
+                                        <button
+                                            type="submit"
+                                            className="signin_formfield_button"
+                                            onClick={this.login}>
+                                            Sign In
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 

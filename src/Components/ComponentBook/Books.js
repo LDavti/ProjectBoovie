@@ -24,7 +24,7 @@ class Books extends Component {
         this.setState({
             isLoading: true
         });
-        fetch(`${url}/volumes?q=""&startIndex=${(this.state.page - 1) * 20}&maxResults=20`, {
+        fetch(`${url}/volumes?q=""&startIndex=${(this.state.page ) * 20}&maxResults=20`, {
             method: "get",
             "Access-Control-Allow-Origin": "no-cors"
         }).then(res => res.json()).then(json => {

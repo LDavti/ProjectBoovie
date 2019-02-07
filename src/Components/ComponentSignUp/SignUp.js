@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import './SignUp.css';
 import registration from "../../signupimages/registration.png";
 import fire from "../../config/Fire";
+
 // import firebase from "firebase";
 
 
@@ -17,8 +18,8 @@ class SignUp extends Component {
             username: "",
             hasAgreed: false,
             human: true,
-            errorMessageUsername : '',
-            errorMessageEmail : ''
+            errorMessageUsername: "",
+            errorMessageEmail: ""
         };
     }
 
@@ -27,20 +28,19 @@ class SignUp extends Component {
         fire.database().ref("/user/").orderByChild("username").equalTo(this.state.username).once("value", snapshot => {
             const user = snapshot.val();
             if (user) {
-               // alert(`User with ${this.state.username} username already exists`);
-               this.setState({errorMessageUsername : `User with ${this.state.username} username already exists`})
+                // alert(`User with ${this.state.username} username already exists`);
+                this.setState({errorMessageUsername: `User with ${this.state.username} username already exists`});
             } else {
-                
                 fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(user => {
                     fire.database().ref('user/' + user.user.uid).set({
                         fullname: this.state.name,
                         username: this.state.username
                     })
                 }).catch(error => {
-                   // alert(error);
-                    this.setState({errorMessageEmail : "This e-mail is already in use"})
+                    // alert(error);
+                    this.setState({errorMessageEmail: error.message});
+
                 });
-                
             }
         })
 
@@ -54,7 +54,8 @@ class SignUp extends Component {
         const name = target.name;
         this.setState({
             [name]: value,
-            errorMessageUsername : ''
+            errorMessageUsername: "",
+            errorMessageEmail: ""
         });
 
     };
@@ -77,9 +78,9 @@ class SignUp extends Component {
     };
 
     errorOfUsername = () => {
-        
+
         let {username} = this.state;
-        let pattern = /^@[a-zA-Z0-9._]*$/
+        let pattern = /^@[a-zA-Z0-9._]*$/;
         if (username.slice(0, 1) !== "@") {
             if (username === "") {
                 return <div/>
@@ -143,11 +144,12 @@ class SignUp extends Component {
                             </div>
                         </div>
                         <div className="form_all">
-                            <form className="form_fields">
+                            <form className="form_fields"  autoComplete="off">
                                 <div className="form_field">
                                     <label className="form_field_label" htmlFor="fullname">Full Name</label>
                                     <input type="text" className="form_field_input" name="name" id="fullname"
                                            placeholder="Enter your full name"
+
                                            value={this.state.name}
                                            onChange={this.handleChange}/>
                                     {this.errorOfFullname()}
@@ -221,7 +223,6 @@ class SignUp extends Component {
                                             onClick={this.signup}
                                     > Sign Up
                                     </button>
-                                    
                                 </div>
                             </form>
                         </div>

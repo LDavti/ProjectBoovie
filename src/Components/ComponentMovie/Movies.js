@@ -56,7 +56,7 @@ class Movies extends Component {
 
 
     render() {
-        console.log(this.state.movies);
+        // console.log(this.state.movies);
         if (this.state.isLoading) {
             return (<img src={film} alt="thereisagif" className="loader"/>);
         } else {
