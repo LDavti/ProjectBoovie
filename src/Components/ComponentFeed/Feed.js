@@ -57,7 +57,7 @@ class Feed extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="tabs_users_section">
+                    <div className="tabs_users_section ">
                         <div className="section_pagetabs">
                             <PageTabs/>
                         </div>

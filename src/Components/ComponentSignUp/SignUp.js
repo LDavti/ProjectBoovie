@@ -31,19 +31,19 @@ class SignUp extends Component {
                 // alert(`User with ${this.state.username} username already exists`);
                 this.setState({errorMessageUsername: `User with ${this.state.username} username already exists`});
             } else {
-                if(this.disabledCheckbox()=== false)
-                {
-                fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(user => {
-                    fire.database().ref('user/' + user.user.uid).set({
-                        fullname: this.state.name,
-                        username: this.state.username
-                    })
-                }).catch(error => {
-                    // alert(error);
-                    this.setState({errorMessageEmail: error.message});
+                if(this.disabledCheckbox()=== false){
+                    fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(user => {
+                        fire.database().ref('user/' + user.user.uid).set({
+                            fullname: this.state.name,
+                            username: this.state.username
+                        })
+                    }).catch(error => {
+                        // alert(error);
+                        this.setState({errorMessageEmail: error.message});
 
-                });
+                    });
                 }
+
             }
         })
 
@@ -212,8 +212,7 @@ class SignUp extends Component {
                                 <div className="form_field_checkbox">
                                     <input className="checkbox_field" id="policy_terms" type='checkbox' name="hasAgreed"
                                            checked={this.state.hasAgreed}
-                                        //    disabled={this.disabledCheckbox()}
-                                            onChange={this.handleChange}/>
+                                           disabled={this.disabledCheckbox()} onChange={this.handleChange}/>
                                     <label className="checkbox_label" htmlFor="policy_terms">
                                         I agree all statements in
                                         <Link to="" className="form_field_termslink">terms of service</Link>
@@ -223,7 +222,7 @@ class SignUp extends Component {
                                     <button className="formfield_button mr-20"
                                             name="button"
                                             type="submit"
-                                            // disabled={!this.state.hasAgreed}
+                                            disabled={!this.state.hasAgreed}
                                             onClick={this.signup}
                                     > Sign Up
                                     </button>

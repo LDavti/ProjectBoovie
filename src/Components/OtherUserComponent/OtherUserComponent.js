@@ -3,8 +3,10 @@ import './OtherUserComponent.css';
 import {Link} from "react-router-dom";
 import otheruserbackground from "../../otheruserimages/otheruserbackground.png";
 import my_profile_boovie_logo from "../../myprofileimages/my_profile_boovie_logo.png";
-import otheruserbookimg from "../../otheruserimages/otheruserbookimg.png";
-import movie_lover from "../../otheruserimages/movie-lover.png";
+// import otheruserbookimg from "../../otheruserimages/otheruserbookimg.png";
+// import movie_lover from "../../otheruserimages/movie-lover.png";
+import book_lover from "../../otheruserimages/book_lover.png"
+import movie_lover from "../../otheruserimages/movie_lover.png";
 import fire from "../../config/Fire";
 import feed_logo from '../../feedimages/feed_logo.png';
 import {connectToUser} from '../../context/UserContext';
@@ -173,7 +175,7 @@ class OtherUserProfile extends Component {
                             </div>
                             <div className="movie_lover_img">
                                 {(moviesCount > booksCount) ?
-                                    <img src={movie_lover} alt="exampleimage"/>   :  <img src={otheruserbookimg} alt="exampleimage"/>
+                                    <img src={movie_lover} alt="exampleimage"/>   :  <img src={book_lover} alt="exampleimage"/>
                                 }
                                 {/*<img src={otheruserbookimg} alt="exampleimage"/>*/}
                             </div>

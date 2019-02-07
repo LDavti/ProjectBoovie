@@ -5,6 +5,7 @@ import background from "../../myprofileimages/background.png";
 import my_profile_boovie_logo from "../../myprofileimages/my_profile_boovie_logo.png";
 import exampleimg from "../../myprofileimages/exampleimg.png";
 import examplebookimg from "../../myprofileimages/examplebookimg.png";
+import book_lover from "../../myprofileimages/book_lover.png";
 import fire from "../../config/Fire";
 import feed_logo from '../../feedimages/feed_logo.png';
 import {connectToUser} from '../../context/UserContext';
@@ -202,7 +203,7 @@ class MyProfile extends Component {
                             </div>
                             <div className="movie_lover_img">
                                 {(this.state.movies.length > this.state.books.length) ?
-                                    <img src={exampleimg} alt="exampleimage"/> : <img src={examplebookimg} alt="examplebookimage"/>
+                                    <img src={exampleimg} alt="exampleimage"/> : <img src={book_lover} alt="examplebookimage"/>
                                 }
                                 </div>
                         </div>
